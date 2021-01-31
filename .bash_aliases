@@ -1,4 +1,4 @@
-alias code=''
+alias code='which code | code .'
 
 alias androidemulator='emulator -avd Nexus_5X_API_29'
 alias update='sudo apt update && sudo apt upgrade -y'
@@ -17,4 +17,4 @@ alias mv='mv -i'
 alias gs='git status'
 alias gp='git pull'
 alias gpp='git push'
-alias gc='git commit -m'
+alias gc='git commit -am'
