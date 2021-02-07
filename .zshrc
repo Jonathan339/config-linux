@@ -3,16 +3,18 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+_user="$(id -u -n)"
 
 #Virtualenvwrapper settings:
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=/home/jonathan/.local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
 source ~/.local/bin/virtualenvwrapper.sh
 
 #--------------------
 
-export ANDROID_HOME=/home/x/Android/Sdk/
+
+export ANDROID_HOME=home/$_user/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
@@ -22,7 +24,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jonathan/.oh-my-zsh"
+export ZSH="/home/$_user/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
