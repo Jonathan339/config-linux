@@ -14,9 +14,10 @@ set showmatch
 set sw=2
 set relativenumber
 set laststatus=2
+set lines=40 columns=145
+
 
 so ~/.vim/colors/monokai.vim
 so ~/.vim/plugins.vim
 so ~/.vim/maps.vim
 so ~/.vim/plugin-config.vim
-
