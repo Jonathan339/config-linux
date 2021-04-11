@@ -16,6 +16,10 @@ set relativenumber
 set laststatus=2
 set lines=40 columns=145
 
+set runtimepath^=~/.vim runtimepath^=~/.vim/after
+let &packpath=&runtimepath
+source ~/.vimrc
+
 
 so ~/.vim/colors/monokai.vim
 so ~/.vim/plugins.vim
