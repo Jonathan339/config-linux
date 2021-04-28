@@ -12,7 +12,7 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
 source ~/.local/bin/virtualenvwrapper.sh
 
 #java path
-export JAVA_HOME=$readlink $(which javac)
+export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 #--------------------
 
 
