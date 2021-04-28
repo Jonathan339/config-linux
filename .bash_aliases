@@ -6,6 +6,8 @@ alias update='sudo apt update && sudo apt upgrade -y'
 alias ls='ls -G'
 alias ll='ls -alG'
 
+alias path='echo $PATH | tr ":" "\n" | nl'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
