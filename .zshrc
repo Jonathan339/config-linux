@@ -11,6 +11,8 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
 source ~/.local/bin/virtualenvwrapper.sh
 
+#java path
+export JAVA_HOME=$readlink $(which javac)
 #--------------------
 
 
