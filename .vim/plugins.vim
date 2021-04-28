@@ -8,8 +8,10 @@ Plug 'sansyrox/vim-python-virtualenv'
 "Plug 'miyakogi/vim-virtualenv'
 Plug 'jmcantrell/vim-virtualenv'
 
-
-"-------------
+"****************************************
+"vim-visual-multi
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+"*********************************
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
   
