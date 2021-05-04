@@ -14,8 +14,11 @@ source ~/.local/bin/virtualenvwrapper.sh
 #java path
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 #--------------------
+#yarn global path
 
+export PATH="$PATH:`yarn global bin`
 
+#--------------------
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
