@@ -16,7 +16,7 @@ export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 #--------------------
 #yarn global path
 
-export PATH="$PATH:`yarn global bin`
+export PATH=$PATH:`yarn global bin`
 
 #--------------------
 export ANDROID_HOME=$HOME/Android/Sdk
