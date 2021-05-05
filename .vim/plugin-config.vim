@@ -1,13 +1,20 @@
 "*****************************************************************************
 " Configuracion del tema
 "*****************************************************************************
-set background=dark
+"set background=dark
 "let g:gruvbox_bold=1
-let g:gruvbox_contrast_dark='hard'
+"let g:gruvbox_contrast_dark='hard'
 "let g:gruvbox_termcolors=106
-set termguicolors
 syntax enable
-colorscheme gruvbox 
+"colorscheme gruvbox 
+
+set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+
+
 
 "*****************************************************************************
 " python intergration
@@ -68,7 +75,7 @@ else
 endif
 
 "*****************************************************************************
-autocmd vimenter * colorscheme gruvbox
+"autocmd vimenter * colorscheme gruvbox
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif

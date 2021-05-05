@@ -19,9 +19,10 @@ Plug 'junegunn/fzf.vim'
 "*****************************************************************************
 " Temas
 "*****************************************************************************
-Plug 'morhetz/gruvbox'
-Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'dracula/vim'
+"Plug 'morhetz/gruvbox'
+"Plug 'shinchu/lightline-gruvbox.vim'
+"Plug 'dracula/vim'
+Plug 'ayu-theme/ayu-vim' 
 
 "*****************************************************************************
 " IDE
