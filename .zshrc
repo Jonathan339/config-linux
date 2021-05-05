@@ -6,13 +6,14 @@ fi
 _user="$(id -u -n)"
 
 #Virtualenvwrapper settings:
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
-source ~/.local/bin/virtualenvwrapper.sh
+#export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+#export WORKON_HOME=$HOME/.virtualenvs
+#export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
+#source ~/.local/bin/virtualenvwrapper.sh
 
 #java path
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
+
 #--------------------
 #yarn global path
 
