@@ -1,6 +1,8 @@
 alias code='which code | code .'
 
-alias androidemulator='emulator -avd Nexus_5X_API_29'
+
+_emulator='$(emulator -list-avds)'
+alias androidemulator='emulator -avd $_emulator'
 alias update='sudo apt update && sudo apt upgrade -y'
 
 alias ls='ls -G'
