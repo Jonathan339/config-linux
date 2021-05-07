@@ -24,13 +24,13 @@ nmap <Leader>nt :NERDTree<CR>
 map <C-n> :NERDTreeToggle<CR>
 
 " easymotion busqueda
-nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>s <Plug>(easymotion-s3)
 
 " Guardar
-nmap <Leader>w :w<cr>
+nmap <Leader>w :w!<cr>
 
 " Salir
-nmap <Leader>q :q<cr>
+nmap <Leader>q :q!<cr>
 
 nmap <Leader>v :VirtualEnvActivate<cr>
 " Saltar al final de la línea
