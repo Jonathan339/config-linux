@@ -76,17 +76,12 @@ Plug 'sbdchd/neoformat'
 "*****************************************************************************
 " autocompletado
 "*****************************************************************************
-"kite
-Plug 'kiteco/plugins'
+"tabine
+Plug 'codota/tabnine-vim'
 
 " ES2015 code snippets (Optional)
 Plug 'epilande/vim-es2015-snippets'
 
-" React code snippets
-Plug 'epilande/vim-react-snippets'
-
-" Ultisnips
-Plug 'SirVer/ultisnips'
 
 " vim-jsx-pretty
 Plug 'maxmellon/vim-jsx-pretty'
