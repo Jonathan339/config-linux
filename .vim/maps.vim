@@ -31,6 +31,8 @@ nmap <Leader>w :w!<cr>
 
 " Salir
 nmap <Leader>q :q!<cr>
+"node
+nmap <Leader>n :!node %<cr>
 
 nmap <Leader>v :VirtualEnvActivate<cr>
 " Saltar al final de la línea
