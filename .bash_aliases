@@ -9,6 +9,8 @@ alias ls='ls -G'
 alias ll='ls -alG'
 
 alias path='echo $PATH | tr ":" "\n" | nl'
+alias tree='tree -I 'node_modules' -L 4'
+
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
