@@ -35,7 +35,7 @@ nmap <Leader>q :q!<cr>
 nmap <Leader>n :!node %<cr>
 
 "actualizar el archivo
-<Leader>r :so %<cr>
+nmap <Leader>r :so %<cr>
 
 nmap <Leader>v :VirtualEnvActivate<cr>
 " Saltar al final de la línea
