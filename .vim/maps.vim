@@ -34,6 +34,9 @@ nmap <Leader>q :q!<cr>
 "node
 nmap <Leader>n :!node %<cr>
 
+"actualizar el archivo
+<Leader>r :so %<cr>
+
 nmap <Leader>v :VirtualEnvActivate<cr>
 " Saltar al final de la línea
 inoremap <C-e> <C-o>$
