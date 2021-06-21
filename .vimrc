@@ -4,7 +4,7 @@ set mouse=a
 set numberwidth=1
 " Muestra líena debajo del cursor.
 set cursorline
-set clipboard=unnamed
+set clipboard=unnamedplus
 syntax enable
 set showcmd
 set ruler
