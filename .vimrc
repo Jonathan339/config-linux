@@ -14,6 +14,7 @@ set showmatch
 set sw=2
 set relativenumber
 set laststatus=2
+set title
 
 
 
