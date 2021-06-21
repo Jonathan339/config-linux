@@ -1,10 +1,6 @@
 "*****************************************************************************
 " Configuracion del tema
 "*****************************************************************************
-"set background=dark
-"let g:gruvbox_bold=1
-"let g:gruvbox_contrast_dark='hard'
-"let g:gruvbox_termcolors=106
 syntax enable
 "colorscheme gruvbox 
 
