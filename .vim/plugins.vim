@@ -19,9 +19,7 @@ Plug 'junegunn/fzf.vim'
 "*****************************************************************************
 " Temas
 "*****************************************************************************
-"Plug 'morhetz/gruvbox'
-"Plug 'shinchu/lightline-gruvbox.vim'
-"Plug 'dracula/vim'
+
 Plug 'ayu-theme/ayu-vim' 
 
 "*****************************************************************************
@@ -76,8 +74,7 @@ Plug 'sbdchd/neoformat'
 "*****************************************************************************
 " autocompletado
 "*****************************************************************************
-"tabine
-Plug 'codota/tabnine-vim'
+
 
 " ES2015 code snippets (Optional)
 Plug 'epilande/vim-es2015-snippets'
