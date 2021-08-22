@@ -18,7 +18,6 @@ set title
 
 
 
-so ~/.vim/colors/monokai.vim
 so ~/.vim/plugins.vim
 so ~/.vim/maps.vim
 so ~/.vim/plugin-config.vim
