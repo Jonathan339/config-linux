@@ -2,13 +2,18 @@
 " Configuracion del tema
 "*****************************************************************************
 syntax enable
-"colorscheme gruvbox 
+
+"gruvbox config
+colorscheme gruvbox
+"colorscheme ayu
+
+let g:gruvbox_contrast_dark = "hard"
 
 set termguicolors     " enable true colors support
 "let ayucolor="light"  " for light version of theme
 "let ayucolor="mirage" " for mirage version of theme
-let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
+"let ayucolor="dark"   " for dark version of theme
+
 
 
 
