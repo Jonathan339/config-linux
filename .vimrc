@@ -15,9 +15,27 @@ set sw=2
 set relativenumber
 set laststatus=2
 set title
+highlight Normal ctermbg=NONE
+set noshowmode
+set termguicolors     " enable true colors support
+syntax enable
 
 
-
-so ~/.vim/plugins.vim
+so ~/.vim/Plugins/plugins-index.vim
 so ~/.vim/maps.vim
-so ~/.vim/plugin-config.vim
+
+
+"*****************************************************************************
+" python intergration
+"*****************************************************************************
+
+"let g:python3_host_prog='/usr/bin/python3'
+"let g:python3_host_prog=$HOME.'/.venv/bin/python3'
+
+"*****************************************************************************
+" Configuracion del tema
+"*****************************************************************************
+
+"gruvbox config
+colorscheme gruvbox
+"colorscheme ayu
