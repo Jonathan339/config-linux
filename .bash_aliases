@@ -4,7 +4,7 @@ alias code='which code | code .'
 _emulator='$(emulator -list-avds)'
 alias androidemulator='emulator -avd $_emulator'
 alias update='sudo apt update && sudo apt upgrade -y'
-
+alias run-react='yarn react-native run-android && yarn react-native start'
 alias ls='ls -G'
 alias ll='ls -alG'
 
