@@ -13,6 +13,7 @@
 .vim/Plugins/neoformat/neoformat.vim
 .vim/Plugins/vim-jsx-pretty/vim-jsx-pretty.vim
 .vim/Plugins/vim-es2015-snippets/vim-es2015-snippets.vim
+.vim/Plugins/fzf-coc/fzf-coc.vim
 
 "*********************************************************************
 
