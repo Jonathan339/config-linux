@@ -1,15 +1,12 @@
 #!/bin/bash
 
-
 cp -r .vimrc ~/
 cp -r .zshrc ~/
 cp -r .bash_aliases ~/ 
 cp -r nvim ~/.config/
 cp -r .vim ~/
 
-
 # Update repos
-#
 sudo apt update
 sudo apt install --only-upgrade -y \
   gcc-5-base \
@@ -19,7 +16,6 @@ sudo apt install --only-upgrade -y \
 #
 sudo apt install -y \
   git curl wget
-
 
 # vlc
 #

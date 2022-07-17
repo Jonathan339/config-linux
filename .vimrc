@@ -20,8 +20,7 @@ set noshowmode
 set termguicolors     " enable true colors support
 syntax enable
 
-
-so ~/.vim/Plugins/plugins-index.vim
+so ~/.vim/plugins.vim
 so ~/.vim/maps.vim
 
 
