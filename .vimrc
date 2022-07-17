@@ -28,7 +28,7 @@ so ~/.vim/maps.vim
 " python intergration
 "*****************************************************************************
 
-"let g:python3_host_prog='/usr/bin/python3'
+let g:python3_host_prog='/usr/bin/python3'
 "let g:python3_host_prog=$HOME.'/.venv/bin/python3'
 
 "*****************************************************************************
