@@ -25,3 +25,5 @@ chmod +x install.sh
 - nodejs
 - nvim
 - yarn
+- sublime merge
+
