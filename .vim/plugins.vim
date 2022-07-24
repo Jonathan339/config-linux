@@ -1,3 +1,14 @@
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 call plug#begin('~/.vim/plugged')
 " emmet
 Plug 'mattn/emmet-vim'
@@ -122,28 +133,3 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 let g:vim_jsx_pretty_highlight_close_tag = 1
 let g:vim_jsx_pretty_template_tags = ['html', 'jsx']
 
-
-" Automatically install the plugin manager itself if it's not installed.
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl
-				\ --fail
-				\ --location
-				\ --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-				\ --output
-				\ ~/.vim/autoload/plug.vim
-
-	augroup VimPlugAutomaticSelfInstallation
-		autocmd!
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	augroup END
-endif
-
-" Automatically install missing plugins.
-augroup VimPlugAutomaticPluginInstallation
-	autocmd!
-	autocmd VimEnter *
-				\ if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) |
-				\	PlugInstall --sync | q |
-				\ endif
-augroup END
