@@ -8,13 +8,7 @@ cp -r .vim ~/
 
 # Update repos
 sudo apt update
-sudo apt install --only-upgrade -y \
-  gcc-5-base \
-  libstdc++6 \
-  curl \
-  wget \
-  vlc \
-  apt-transport-https
+sudo apt install libstdc++6 curl wget vlc apt-transport-https -y
   
 #vim plug 
 git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug
@@ -33,11 +27,9 @@ sudo apt-get install -y nodejs
 sudo snap install nvim --classic
 
 #Yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt update && sudo apt install yarn
+sudo apt update && sudo apt install yarn -y
 
-#sublime merge
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-sudo apt install -y sublime-merge
+
+#limpia despues de instalar
+sudo apt autoclean -y && sudo apt autoremove -y && sudo apt update && sudo apt upgrade -y
+
