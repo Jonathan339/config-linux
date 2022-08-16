@@ -8,8 +8,8 @@ cp -r .vim ~/
 
 # Update repos
 sudo apt update
-sudo apt install libstdc++6 curl wget vlc apt-transport-https -y
-  
+sudo apt install libstdc++6 curl wget vlc apt-transport-https  -y
+
 #vim plug 
 git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug
 
@@ -26,7 +26,10 @@ sudo apt-get install -y nodejs
 #Nvim
 sudo snap install nvim --classic
 
+
 #Yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt update && sudo apt install yarn -y
 
 
