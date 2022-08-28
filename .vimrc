@@ -1,5 +1,6 @@
 " Mostrar número de línea
 set number
+set completeopt=menu,menuone,noselect "-- mostly just for cmp
 set mouse=a
 set numberwidth=1
 " Muestra líena debajo del cursor.
