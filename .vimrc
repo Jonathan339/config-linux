@@ -23,6 +23,8 @@ syntax enable
 
 so ~/.vim/plugins.vim
 so ~/.vim/maps.vim
+so ~/.vim/coc-setting.vim
+so ~/.vim/coc-maps.vim
 
 
 "*****************************************************************************
