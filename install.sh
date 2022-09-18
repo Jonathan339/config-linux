@@ -8,8 +8,14 @@ cp -r .vim ~/
 
 # Update repos
 sudo apt update
-sudo apt install libstdc++6 curl wget vlc apt-transport-https  -y
+sudo apt install libstdc++6 curl wget vlc apt-transport-https gnupg2 -y
 
+#jdk java
+sudo apt install openjdk-11-jre
+#tess termimal
+curl -s https://apt.tessapp.dev/key.gpg | gpg --dearmor | tee /usr/share/keyrings/tess.gpg > /dev/null
+echo 'deb [signed-by=/usr/share/keyrings/tess.gpg] https://apt.tessapp.dev stable main' >> /etc/apt/sources.list.d/tess-packages.list
+sudo apt update && sudo apt install tess
 #vim plug 
 git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug
 
