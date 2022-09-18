@@ -4,7 +4,7 @@
 " Abrir terminal
 map <F2> :belowright terminal<CR>
 
-" Auto_save 
+" Auto_save
 let g:auto_save=1
 
 " Tecla lider
@@ -23,14 +23,11 @@ nmap <Leader>f :Neoformat<cr>
 nmap <Leader>nt :NERDTree<CR>
 map <C-n> :NERDTreeToggle<CR>
 
-" easymotion busqueda
-nmap <Leader>s <Plug>(easymotion-s3)
-
 " Guardar
 nmap <Leader>w :w!<cr>
 
-" Salir
-nmap <Leader>q :q!<cr>
+"Guardar y salir
+nmap <Leader>q :wq!<cr>
 "node
 nmap <Leader>n :!node %<cr>
 

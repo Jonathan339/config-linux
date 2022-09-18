@@ -10,6 +10,14 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 call plug#begin('~/.vim/plugged')
+
+Plug 'airblade/vim-gitgutter' " Para ver los cambios en git como linea que se agrega con un signo +, si quitamos lineas con - y si se modifico una con ~
+Plug 'tpope/vim-commentary' " con gcc en modo vista gcc para descomentar una linea, con control v y seleccionamos varias lineas y colocamos gc y se comentan todas
+Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mattn/emmet-vim'
+Plug 'Xuyuanp/nerdtree-git-plugin' " Visualización de cambios de git en NerdTree
+
 " emmet
 Plug 'mattn/emmet-vim'
 " fzf
@@ -53,6 +61,16 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
+
+"gitgutter
+let g:gitgutter_terminal_reports_focus=0
+" Your vimrc
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
+
 "gruvbox
 let g:gruvbox_contrast_dark = "hard"
 "ale
@@ -79,8 +97,8 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#branch#enabled = 1
+"let g:airline_theme = 'powerlineish'
+"let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
