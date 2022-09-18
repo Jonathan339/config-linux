@@ -13,7 +13,7 @@ _user="$(id -u -n)"
 
 #java path
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
-
+export JAVA_HOME=$(which java)
 #--------------------
 #yarn global path
 
@@ -52,3 +52,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
