@@ -13,7 +13,7 @@ _user="$(id -u -n)"
 
 #java path
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
-export JAVA_HOME=$(which java)
+#export JAVA_HOME=$(which java)
 #--------------------
 #yarn global path
 
