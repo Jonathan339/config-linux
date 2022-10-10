@@ -8,7 +8,18 @@ cp -r .vim ~/
 
 # Update repos
 sudo apt update
-sudo apt install libstdc++6 curl wget vlc apt-transport-https  gnupg2 seahorse git python3-pip -y
+sudo apt install libstdc++6 curl wget vlc apt-transport-https gnupg2 seahorse git python3-pip cargo libssl-dev -y
+clear
+# watchman
+git clone https://github.com/facebook/watchman.git
+cd watchman
+sudo ./install-system-packages.sh
+./autogen.sh
+
+clear
+git clone https://github.com/neovim/pynvim.git
+cd pynvim && pip3 install .
+sudo rm -rf pynvim
 clear
 #jdk java
 sudo apt install openjdk-11-jre -y
