@@ -8,7 +8,7 @@ cp -r .vim ~/
 
 # Update repos
 sudo apt update
-sudo apt install libstdc++6 curl wget vlc apt-transport-https  gnupg2 seahorse git -y
+sudo apt install libstdc++6 curl wget vlc apt-transport-https  gnupg2 seahorse git python3-pip -y
 clear
 #jdk java
 sudo apt install openjdk-11-jre -y
