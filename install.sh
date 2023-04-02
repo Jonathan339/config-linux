@@ -58,8 +58,9 @@ cp -r .bash_aliases ~/
 check_error "Ocurrió un error al copiar el archivo .bash_aliases"
 cp -r nvim ~/.config/
 check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
-#cp -r .vim ~/
-#check_error
+mkdir -p ~/.config/alacritty
+cp -r alacritty.yml ~/.config/alacritty/
+check_error "Ocurrió un error al copiar el archivo alacritty.yml"
 
 # Instalación de paquetes
 install_packages
@@ -83,6 +84,11 @@ check_error "Ocurrió un error al borrar el directorio pynvim"
 echo -e "\e[34mInstalando Neovim...\e[0m"
 sudo snap install nvim --classic
 check_error "Ocurrió un error al instalar Neovim"
+
+# Alacritty
+echo -e "\e[34mInstalando Alacritty...\e[0m"
+sudo snap install alacritty --classic
+check_error "Ocurrió un error al instalar Alacritty"
 
 # Android Studio
 echo -e "\e[34mInstalando Android Studio...\e[0m"
