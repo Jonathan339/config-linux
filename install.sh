@@ -55,7 +55,26 @@ echo -e "\e[34mCopiando archivos de configuración...\e[0m"
 cp -r .zshrc ~/
 check_error "Ocurrió un error al copiar el archivo .zshrc"
 cp -r .bash_aliases ~/
-check_error "Ocurrió un error al copiar el archivo .bash_aliases"
+check_error "Oc
+# Alacritty
+echo -e "\e[34mInstalando Alacritty...\e[0m"
+sudo snap install alacritty --classic
+check_error "Ocurrió un error al instalar Alacritty"
+
+# Android Studio
+echo -e "\e[34mInstalando Android Studio...\e[0m"
+sudo snap install android-studio --classic
+check_error "Ocurrió un error al instalar Android Studio"
+
+# Limpieza
+echo -e "\e[34mLimpieza...\e"
+sudo apt autoclean -y
+sudo apt autoremove -y
+sudo apt update
+sudo apt upgrade -y
+check_error "Ocurrió un error al limpiar"
+
+echo -e "\033[1;32mInstalación completada.\033[0m"urrió un error al copiar el archivo .bash_aliases"
 cp -r nvim ~/.config/
 check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
 mkdir -p ~/.config/alacritty
