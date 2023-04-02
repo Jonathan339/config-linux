@@ -20,6 +20,7 @@ highlight Normal ctermbg=NONE
 set noshowmode
 set termguicolors     " enable true colors support
 syntax enable
+set buftype=""
 
 so ~/.vim/plugins.vim
 so ~/.vim/maps.vim

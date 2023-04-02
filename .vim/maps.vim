@@ -27,7 +27,7 @@ map <C-n> :NERDTreeToggle<CR>
 nmap <Leader>w :w!<cr>
 
 "Guardar y salir
-nmap <Leader>q :wq!<cr>
+nmap <Leader>q :wq<cr>
 "node
 nmap <Leader>n :!node %<cr>
 
