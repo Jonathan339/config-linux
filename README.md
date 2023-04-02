@@ -42,3 +42,4 @@ Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los c
 
 Este proyecto está bajo la licencia [MIT](https://github.com/Jonathan339/dotfiles/blob/main/LICENSE).
 
+
