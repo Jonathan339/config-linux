@@ -75,5 +75,5 @@ vim.notify = require("notify")
 
 
 -- Configuración adicional
--- ...
-
+-- Configuración del tema de color
+vim.cmd('colorscheme gruvbox')
