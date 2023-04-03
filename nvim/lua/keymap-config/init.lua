@@ -1,4 +1,4 @@
-local vim = vim
+local global vim = vim
 
 -- Definir los líderes de los mapas de teclas
 vim.g.mapleader = ','
@@ -9,6 +9,9 @@ vim.keymap.set('i', ",,", "<ESC>")
 
 -- Guardar
 vim.keymap.set('i', "<Leader>w", "<ESC>:w!<cr>")
+
+-- Salir
+vim.keymap.set('n', "<Leader>q", ":q!<cr>")
 
 -- Instalar plugins con Packer
 vim.keymap.set('n', "<Leader>i", ":PackerInstall<cr>")
