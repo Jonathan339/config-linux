@@ -1,0 +1,34 @@
+vim.g.completion_enable_snippet = 'UltiSnips'
+vim.g.completion_enable_auto_popup = 1
+vim.g.completion_trigger_character = {'.'}
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+vim.g.completion_chain_complete_list = {
+  {complete_items = {'lsp', 'snippet'}},
+  {mode = '<c-p>'},
+  {mode = '<c-n>'},
+}
+vim.g.completion_customize_lsp_label = {
+  Function = '  ',
+  Method = '  ',
+  Field = ' ﴲ ',
+  Variable = '  ',
+  Constant = '  ',
+  Class = '  ',
+  Interface = ' ﰮ ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = ' ﬌ ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Struct = ' פּ ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+}
