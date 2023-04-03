@@ -74,7 +74,7 @@ sudo apt update
 sudo apt upgrade -y
 check_error "Ocurrió un error al limpiar"
 
-echo -e "\033[1;32mInstalación completada.\033[0m"urrió un error al copiar el archivo .bash_aliases"
+echo -e "\033[1;32mInstalación completada.\033[0m"ocurrió un error al copiar el archivo .bash_aliases"
 cp -r nvim ~/.config/
 check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
 mkdir -p ~/.config/alacritty
