@@ -1,39 +1,61 @@
--- Instalación automática de Packer si no está instalado
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    vim.api.nvim_command('packadd packer.nvim')
+-- Instala automáticamente Packer si aún no está instalado
+local packer_install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
+  vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', packer_install_path})
+  vim.cmd [[packadd packer.nvim]]
+end
+
+-- Asegura que Packer esté instalado y configura los complementos
+local packer_ok, packer = pcall(require, "packer")
+if not packer_ok then
+  return
+end
+
+-- Función para asegurarse de que Packer esté instalado
+local function ensure_packer()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
 -- Configuración de plugins
 require('packer').startup(function()
-    -- Plugin manager
-    use 'wbthomason/packer.nvim'
-    
-    -- Autocompletado
-    use 'hrsh7th/nvim-compe'
+  -- Plugin manager
+  use 'wbthomason/packer.nvim'
 
-    -- Tema de color
-    use 'gruvbox-community/gruvbox'
+  -- Autocompletado
+  use {
+    'hrsh7th/nvim-compe',
+    config = function() require('plugins.nvim-compe') end
+  }
 
-    -- Navegación de archivos
-    use 'kyazdani42/nvim-tree.lua'
+  -- Tema de color
+  use 'gruvbox-community/gruvbox'
 
-    -- Búsqueda y selección de archivos
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    
-    }
-    
-    use {'notify-rs/vim-notify'}
+  -- Navegación de archivos
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function() require('plugins.nvim-tree') end
+  }
 
-    -- Integración con React
-    use 'mattn/vim-jsx-pretty'
-    use 'pangloss/vim-javascript'
-    use 'yuezk/vim-js'
+  -- Búsqueda y selección de archivos
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = function() require('plugins.telescope') end
+  }
+
+  -- Integración con React
+  use 'mattn/vim-jsx-pretty'
+  use 'pangloss/vim-javascript'
+  use 'yuezk/vim-js'
+
 end)
-
 
 -- Configuración para mattn/vim-jsx-pretty
 vim.g.vim_jsx_pretty_highlight_close_tag = 1
@@ -46,3 +68,13 @@ vim.g.javascript_conceal_this = "@"
 
 -- Configuración para yuezk/vim-js
 vim.g.javascript_enable_domhtmlcss = 1
+
+-- Autocomandos para Packer
+vim.cmd[[
+  augroup Packer_aug
+    autocmd!
+    autocmd BufWritePost plugins.lua PackerCompile
+    autocmd BufWritePost plugins.lua PackerClean
+    autocmd BufWritePost plugins.lua PackerInstall
+  augroup END
+]]
