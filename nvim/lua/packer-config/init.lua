@@ -11,17 +11,15 @@ if not packer_ok then
   return
 end
 
--- Función para asegurarse de que Packer esté instalado
-local function ensure_packer()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
-end
+-- Autocomandos para Packer
+vim.cmd[[
+  augroup Packer_aug
+    autocmd!
+    autocmd BufWritePost plugins.lua PackerCompile
+    autocmd BufWritePost plugins.lua PackerClean
+    autocmd BufWritePost plugins.lua PackerInstall
+  augroup END
+]]
 
 -- Configuración de plugins
 require('packer').startup(function()
@@ -68,13 +66,3 @@ vim.g.javascript_conceal_this = "@"
 
 -- Configuración para yuezk/vim-js
 vim.g.javascript_enable_domhtmlcss = 1
-
--- Autocomandos para Packer
-vim.cmd[[
-  augroup Packer_aug
-    autocmd!
-    autocmd BufWritePost plugins.lua PackerCompile
-    autocmd BufWritePost plugins.lua PackerClean
-    autocmd BufWritePost plugins.lua PackerInstall
-  augroup END
-]]
