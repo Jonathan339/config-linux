@@ -55,7 +55,13 @@ echo -e "\e[34mCopiando archivos de configuración...\e[0m"
 cp -r .zshrc ~/
 check_error "Ocurrió un error al copiar el archivo .zshrc"
 cp -r .bash_aliases ~/
-check_error "Oc
+check_error "Ocurrió un error al copiar el archivo .bash_aliases"
+cp -r nvim ~/.config/
+check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
+mkdir -p ~/.config/alacritty
+cp -r alacritty.yml ~/.config/alacritty/
+check_error "Ocurrió un error al copiar el archivo alacritty.yml"
+
 # Alacritty
 echo -e "\e[34mInstalando Alacritty...\e[0m"
 sudo snap install alacritty --classic
@@ -66,21 +72,6 @@ echo -e "\e[34mInstalando Android Studio...\e[0m"
 sudo snap install android-studio --classic
 check_error "Ocurrió un error al instalar Android Studio"
 
-# Limpieza
-echo -e "\e[34mLimpieza...\e"
-sudo apt autoclean -y
-sudo apt autoremove -y
-sudo apt update
-sudo apt upgrade -y
-check_error "Ocurrió un error al limpiar"
-
-echo -e "\033[1;32mInstalación completada.\033[0m"ocurrió un error al copiar el archivo .bash_aliases"
-cp -r nvim ~/.config/
-check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
-mkdir -p ~/.config/alacritty
-cp -r alacritty.yml ~/.config/alacritty/
-check_error "Ocurrió un error al copiar el archivo alacritty.yml"
-
 # Instalación de paquetes
 install_packages
 
@@ -90,14 +81,19 @@ install_package_if_not_installed google-chrome-stable
 install_package_if_not_installed nodejs
 install_package_if_not_installed yarn
 
-# Pynvim
-echo -e "\e[34mInstalando Pynvim...\e[0m"
-git clone https://github.com/neovim/pynvim.git
-cd pynvim && pip3 install .
-check_error "Ocurrió un error al instalar Pynvim"
-cd ..
-sudo rm -rf pynvim
-check_error "Ocurrió un error al borrar el directorio pynvim"
+# Verificar si Pynvim está instalado
+if python3 -c "import pynvim" &> /dev/null; then
+  echo -e "\e[34mPynvim ya está instalado. Saltando instalación...\e[0m"
+else
+  # Pynvim
+  echo -e "\e[34mInstalando Pynvim...\e[0m"
+  git clone https://github.com/neovim/pynvim.git
+  cd pynvim && pip3 install .
+  check_error "Ocurrió un error al instalar Pynvim"
+  cd ..
+  sudo rm -rf pynvim
+  check_error "Ocurrió un error al borrar el directorio pynvim"
+fi
 
 # Nvim
 echo -e "\e[34mInstalando Neovim...\e[0m"
