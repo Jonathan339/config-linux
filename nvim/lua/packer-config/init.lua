@@ -31,6 +31,12 @@ require('packer').startup(function()
     'hrsh7th/nvim-compe',
     config = function() require('plugins.nvim-compe') end
   }
+  -- Coc
+  use {
+    'neoclide/coc.nvim',
+    branch = 'release',
+    config = function() require('plugins.coc') end
+  }
 
   -- Tema de color
   use 'gruvbox-community/gruvbox'
@@ -47,12 +53,20 @@ require('packer').startup(function()
     requires = { {'nvim-lua/plenary.nvim'} },
     config = function() require('plugins.telescope') end
   }
+  
+  -- Configuración de LSP
+  use 'neovim/nvim-lspconfig'
+  
+  -- Análisis sintáctico de árbol
+  use 'nvim-treesitter/nvim-treesitter'
 
+  -- Integración con Bash
+  --use {'iamcco/nvim-language-server', run = ':LspInstall bash'}
+  
   -- Integración con React
   use 'mattn/vim-jsx-pretty'
   use 'pangloss/vim-javascript'
   use 'yuezk/vim-js'
-
 end)
 
 -- Configuración para mattn/vim-jsx-pretty
