@@ -66,15 +66,8 @@ vim.g.completion_enable_snippet = 'vim-vsnip'
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
 vim.g.completion_trigger_character = {'.'}
 
--- Utilizar el tema gruvbox
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
-
--- Configuración de notificaciones
-vim.notify = require("notify")
-
-
 -- Configuración adicional
 -- Configuración del tema de color
+vim.o.background = "dark"
 vim.cmd('colorscheme gruvbox')
 vim.o.runtimepath = vim.o.runtimepath .. ',~/.local/share/nvim/site/'
