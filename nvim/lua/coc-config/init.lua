@@ -11,7 +11,5 @@ vim.g.coc_global_extensions = {
     'coc-prettier',
   }
   
-  -- Habilitar el autocompletado inteligente
-  vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
-  vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
+
   
