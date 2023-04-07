@@ -1,42 +1,42 @@
 -- Cargar el módulo Vim global
-local global = vim
+local g = vim.g
 
 -- Definir los líderes de los mapas de teclas
-global.g.mapleader = ','
-global.g.maplocalleader = ','
+g.mapleader = ','
+g.maplocalleader = ','
 
 -- Modo insertar
-global.keymap.set('i', ",,", "<ESC>")
+vim.api.nvim_set_keymap('i', ',,', '<ESC>', {noremap = true})
 
 -- Guardar el archivo actual
-global.keymap.set('i', "<Leader>w", "<ESC>:w!<cr>")
+vim.api.nvim_set_keymap('i', '<Leader>w', '<ESC>:w!<cr>', {noremap = true})
 
 -- Salir del editor
-global.keymap.set('n', "<Leader>q", ":q!<cr>")
+vim.api.nvim_set_keymap('n', '<Leader>q', ':q!<cr>', {noremap = true})
 
 -- Instalar plugins con Packer
-global.keymap.set('n', "<Leader>i", ":PackerInstall<cr>")
+vim.api.nvim_set_keymap('n', '<Leader>i', ':PackerInstall<cr>', {noremap = true})
 
 -- Buscar archivos con FZF
-global.keymap.set('n', "<Leader>f", ":FZF<cr>")
+vim.api.nvim_set_keymap('n', '<Leader>f', ':FZF<cr>', {noremap = true})
 
 -- Buscar archivos en el proyecto con Telescope
-global.keymap.set('n', "<Leader>b", ":Telescope git_files hidden=true<CR>")
+vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope git_files hidden=true<CR>', {noremap = true})
 
 -- Buscar texto en el proyecto con Telescope
-global.keymap.set('n', "<Leader>l", ":Telescope live_grep<CR>")
+vim.api.nvim_set_keymap('n', '<Leader>l', ':Telescope live_grep<CR>', {noremap = true})
 
 -- Abrir el árbol de archivos con NERDTree
-global.keymap.set('n', "<Leader>m", ":NERDTree<CR>")
+vim.api.nvim_set_keymap('n', '<Leader>m', ':NERDTree<CR>', {noremap = true})
 
 -- Ejecutar código con SnipRun
-global.keymap.set('n', "<Leader>n", ":SnipRun<CR>")
+vim.api.nvim_set_keymap('n', '<Leader>n', ':SnipRun<CR>', {noremap = true})
 
 -- Habilitar el autocompletado inteligente
-global.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
-global.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { expr = true })
+vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {expr = true})
+vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', {expr = true})
 
 -- Asignaciones de teclas para pickers de Telescope
-global.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
-global.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true })
-global.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
