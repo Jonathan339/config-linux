@@ -12,5 +12,7 @@ vim.g.coc_global_extensions = {
   'coc-highlight',
   'coc-pairs',
   'coc-jedi',
-  'coc-html5',
+  'coc-sh',
+  'coc-sql',
+  'coc-yaml',
 }
