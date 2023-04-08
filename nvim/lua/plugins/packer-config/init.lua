@@ -55,6 +55,7 @@ require('packer').startup(function()
     end
   }
 
+  use {'neoclide/coc.nvim', branch = 'release'}
   -- Git gutter
   use 'airblade/vim-gitgutter'
 

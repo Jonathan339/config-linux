@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/x/.local/share/nvim/site/pack/packer/start/auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
+  ["coc.nvim"] = {
+    loaded = true,
+    path = "/home/x/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    url = "https://github.com/neoclide/coc.nvim"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/x/.local/share/nvim/site/pack/packer/start/gruvbox",
