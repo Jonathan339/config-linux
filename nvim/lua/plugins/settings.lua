@@ -4,4 +4,4 @@ require("plugins.keymap-config.init")
 require("plugins.options.init")
 require("plugins.telescope.init")
 require("plugins.gitgutter.init")
-
+require("plugins.notifity.init")

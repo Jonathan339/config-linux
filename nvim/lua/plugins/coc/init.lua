@@ -15,6 +15,7 @@ vim.g.coc_global_extensions = {
   'coc-sh',
   'coc-sql',
   'coc-yaml',
+ 
 }
 
 -- Configuración para ignorar el mensaje de 'undefined global' en Lua

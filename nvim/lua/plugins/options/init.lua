@@ -46,6 +46,8 @@ vim.o.mouse = "a"
 -- Usar el portapapeles del sistema operativo
 vim.o.clipboard = "unnamedplus"
 
+vim.opt.cursorline = false
+
 -- Deshabilitar la creación de archivos de copia de seguridad
 vim.o.backup = false
 
@@ -68,6 +70,10 @@ vim.g.completion_trigger_character = {'.'}
 
 -- Configuración adicional
 -- Configuración del tema de color
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+vim.o.termguicolors = true
 vim.o.background = "dark"
 vim.cmd('colorscheme gruvbox')
 vim.o.runtimepath = vim.o.runtimepath .. ',~/.local/share/nvim/site/'
+
+

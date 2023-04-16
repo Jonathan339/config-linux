@@ -30,47 +30,55 @@ end
 -- Configuración de plugins
 require('packer').startup(function()
   -- Plugin manager
-  use 'wbthomason/packer.nvim' 
+  use 'wbthomason/packer.nvim'
 
   -- Tema de color
   use 'gruvbox-community/gruvbox'
 
   -- Navegación de archivos
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- opcional
-    },
-    config = function()
-      require("nvim-tree").setup {}
-    end
-  }
+  use 'christoomey/vim-tmux-navigator'
 
+
+use {
+  "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = { 
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    }
+  }
   -- Búsqueda y selección de archivos
   use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} },
-    config = function()
-      require('telescope').setup {}
-    end
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
-
-  use {'neoclide/coc.nvim', branch = 'release'}
+  use 'nvim-lua/plenary.nvim'
   -- Git gutter
   use 'airblade/vim-gitgutter'
 
   -- Auto-save
   use 'Pocco81/auto-save.nvim'
+  --
+  --use 'lewis6991/gitsigns.nvim'
 
   -- Prettier
   use {'prettier/vim-prettier', run = 'yarn install' }
 
   -- Configuración de LSP
   use 'neovim/nvim-lspconfig'
-  
+
   -- Análisis sintáctico de árbol
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-tree/nvim-web-devicons'
 
+ 
+  -- Notificaciones
+  use 'rcarriga/nvim-notify'
+  use {
+    'yamatsum/nvim-nonicons',
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
   -- Integración con React
   use 'pangloss/vim-javascript'
   use 'yuezk/vim-js'
@@ -83,7 +91,9 @@ vim.g.javascript_conceal_null = "ø"
 vim.g.javascript_conceal_this = "@"
 
 -- Configuración para yuezk/vim-js
-vim.g.javascript_enable_domhtmlcss = 1
+vim.g.javascript_plugin_flow = 1
+vim.g.javascript_conceal_function = "ƒ"
+vim.g.javascript_conceal_null = "ø"
+vim.g.javascript_conceal_this = "@"
 
--- Limpia, instala y compila los plugins con Packer
-packer_cleanup_install_compile()
+
