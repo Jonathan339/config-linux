@@ -55,3 +55,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Incluir fzf si existe el archivo
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Habilitar autocompletado de fzf
+autoload -U compinit && compinit

@@ -14,6 +14,7 @@ packages=(
   cargo
   libssl-dev
   openjdk-11-jre
+  fzf
 )
 
 # Función para instalar paquetes
