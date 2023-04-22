@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables de paquetes a instalar
-packages=(
+declare -a packages=(
   libstdc++6
   curl
   wget
@@ -20,9 +20,8 @@ packages=(
 # Función para instalar paquetes
 install_packages() {
   echo -e "\e[34mInstalando paquetes necesarios...\e[0m"
-  sudo apt update
-  sudo apt install "${packages[@]}" -y
-  check_error "Ocurrió un error al instalar paquetes"
+  sudo apt update && sudo apt install "${packages[@]}" -y || \
+    { echo -e "\e[31mOcurrió un error al instalar paquetes\e[0m"; exit 1; }
 }
 
 # Función para verificar si un paquete está instalado
@@ -34,89 +33,85 @@ package_is_installed() {
 install_package_if_not_installed() {
   if ! package_is_installed "$1"; then
     echo -e "\e[34m$1 no está instalado. Instalando...\e[0m"
-    sudo apt-get install "$1" -y
-    check_error "Ocurrió un error al instalar el paquete $1"
+    sudo apt-get install "$1" -y || \
+      { echo -e "\e[31mOcurrió un error al instalar el paquete $1\e[0m"; exit 1; }
   else
     echo -e "\e[32m$1 ya está instalado. Saltando...\e[0m"
   fi
 }
 
-# Verificación de errores después de cada comando
-check_error() {
-  if [ $? -ne 0 ]; then
-    echo -e "\e[31m$1\e[0m"
-    exit 1
-  fi
+# Función para copiar archivos de configuración
+copy_config_files() {
+  echo -e "\e[34mCopiando archivos de configuración...\e[0m"
+  cp -r .zshrc ~/
+  cp -r .bash_aliases ~/
+  cp -r nvim ~/.config/
+  mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ || \
+    { echo -e "\e[31mOcurrió un error al copiar los archivos de configuración\e[0m"; exit 1; }
 }
 
-# Copia de archivos de configuración
-echo -e "\e[34mCopiando archivos de configuración...\e[0m"
-#cp -r .vimrc ~/
-#check_error
-cp -r .zshrc ~/
-check_error "Ocurrió un error al copiar el archivo .zshrc"
-cp -r .bash_aliases ~/
-check_error "Ocurrió un error al copiar el archivo .bash_aliases"
-cp -r nvim ~/.config/
-check_error "Ocurrió un error al copiar el directorio nvim a ~/.config/"
-mkdir -p ~/.config/alacritty
-cp -r alacritty.yml ~/.config/alacritty/
-check_error "Ocurrió un error al copiar el archivo alacritty.yml"
+# Función para instalar Alacritty
+install_alacritty() {
+  echo -e "\e[34mInstalando Alacritty...\e[0m"
+  sudo snap install alacritty --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar Alacritty\e[0m"; exit 1; }
+}
 
-# Alacritty
-echo -e "\e[34mInstalando Alacritty...\e[0m"
-sudo snap install alacritty --classic
-check_error "Ocurrió un error al instalar Alacritty"
+# Función para instalar Android Studio
+install_android_studio() {
+  echo -e "\e[34mInstalando Android Studio...\e[0m"
+  sudo snap install android-studio --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar Android Studio\e[0m"; exit 1; }
+}
 
-# Android Studio
-echo -e "\e[34mInstalando Android Studio...\e[0m"
-sudo snap install android-studio --classic
-check_error "Ocurrió un error al instalar Android Studio"
+# Función para limpiar
+clean() {
+  echo -e "\e[34mLimpieza...\e"
+  sudo apt autoremove -y
+  sudo apt full-upgrade -y || \
+    { echo -e "\e[31mOcurrió un error al limpiar\e[0m"; exit 1; }
+}
 
-# Instalación de paquetes
-install_packages
+# Función para instalar todo
+install_all() {
+  install_packages
+  copy_config_files
+  install_alacritty
+  install_android_studio
+}
 
-# Verificación e instalación de paquetes adicionales
-install_package_if_not_installed watchman
-install_package_if_not_installed google-chrome-stable
-install_package_if_not_installed nodejs
-install_package_if_not_installed yarn
+# Menú principal
+echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
 
-# Verificar si Pynvim está instalado
-if python3 -c "import pynvim" &> /dev/null; then
-  echo -e "\e[34mPynvim ya está instalado. Saltando instalación...\e[0m"
-else
-  # Pynvim
-  echo -e "\e[34mInstalando Pynvim...\e[0m"
-  git clone https://github.com/neovim/pynvim.git
-  cd pynvim && pip3 install .
-  check_error "Ocurrió un error al instalar Pynvim"
-  cd ..
-  sudo rm -rf pynvim
-  check_error "Ocurrió un error al borrar el directorio pynvim"
-fi
+select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Limpiar" "Salir"
+do
+  case $opcion in
+    "Instalar todo")
+      install_all
+      ;;
+    "Instalar paquetes")
+      install_packages
+      ;;
+    "Copiar archivos de configuración")
+      copy_config_files
+      ;;
+    "Instalar Alacritty")
+      install_alacritty
+      ;;
+    "Instalar Android Studio")
+      install_android_studio
+      ;;
+    "Limpiar")
+      clean
+      ;;
+    "Salir")
+      echo "Gracias por usar el instalador. Adiós."
+      break
+      ;;
+    *)
+      echo "Opción inválida. Inténtalo de nuevo."
+      ;;
+  esac
+done
 
-# Nvim
-echo -e "\e[34mInstalando Neovim...\e[0m"
-sudo snap install nvim --classic
-check_error "Ocurrió un error al instalar Neovim"
-
-# Alacritty
-echo -e "\e[34mInstalando Alacritty...\e[0m"
-sudo snap install alacritty --classic
-check_error "Ocurrió un error al instalar Alacritty"
-
-# Android Studio
-echo -e "\e[34mInstalando Android Studio...\e[0m"
-sudo snap install android-studio --classic
-check_error "Ocurrió un error al instalar Android Studio"
-
-# Limpieza
-echo -e "\e[34mLimpieza...\e"
-sudo apt autoclean -y
-sudo apt autoremove -y
-sudo apt update
-sudo apt upgrade -y
-check_error "Ocurrió un error al limpiar"
-
-echo -e "\033[1;32mInstalación completada.\033[0m"
+echo -e "\033"
