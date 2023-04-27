@@ -64,6 +64,15 @@ install_android_studio() {
     { echo -e "\e[31mOcurrió un error al instalar Android Studio\e[0m"; exit 1; }
 }
 
+# Función para instalar Spotify
+install_spotify() {
+  echo -e "\e[34mInstalando Spotify...\e[0m"
+  curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
+  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+  sudo apt update && sudo apt install spotify-client -y || \
+    { echo -e "\e[31mOcurrió un error al instalar Spotify\e[0m"; exit 1; }
+}
+    
 # Función para limpiar
 clean() {
   echo -e "\e[34mLimpieza...\e"
@@ -78,6 +87,7 @@ install_all() {
   copy_config_files
   install_alacritty
   install_android_studio
+  install_spotify
 }
 
 # Menú principal
@@ -100,6 +110,9 @@ do
       ;;
     "Instalar Android Studio")
       install_android_studio
+      ;;
+    "Instalar Android Studio")
+      install_spotify
       ;;
     "Limpiar")
       clean
