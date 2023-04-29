@@ -8,7 +8,8 @@ vim.o.hidden = true
 vim.o.splitright = true
 
 -- Resaltar la línea actual
-vim.o.cursorline = true
+vim.o.cursorline = false
+vim.o.guicursor = "n-v-c:block-Cursor/lCursor-blinkwait100-blinkon0-blinkoff0"
 
 -- Mostrar los números de línea
 vim.o.number = true
@@ -45,8 +46,6 @@ vim.o.mouse = "a"
 
 -- Usar el portapapeles del sistema operativo
 vim.o.clipboard = "unnamedplus"
-
-vim.opt.cursorline = false
 
 -- Deshabilitar la creación de archivos de copia de seguridad
 vim.o.backup = false
