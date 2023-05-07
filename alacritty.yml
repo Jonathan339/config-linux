@@ -30,6 +30,7 @@ font:
   family: 'Fira Code'
 
 window:
+  opacity: 0.75
   dimensions:
     columns: 90
     lines: 35
