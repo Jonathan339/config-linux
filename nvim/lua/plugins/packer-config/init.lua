@@ -36,6 +36,8 @@ require('packer').startup(function()
     -- Tema de color
     use 'gruvbox-community/gruvbox'
 
+    use 'nvim-lualine/lualine.nvim' -- Statusline
+
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
