@@ -31,10 +31,10 @@ font:
 
 window:
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 90
+    lines: 35
   position:
-    x: 0
+    x: 210
     y: 0
 
 cursor:
