@@ -50,6 +50,8 @@ require('packer').startup(function()
         tag = '0.1.1',
         requires = {{'nvim-lua/plenary.nvim'}}
     }
+    use 'nvim-telescope/telescope-file-browser.nvim'
+    
     use 'nvim-lua/plenary.nvim'
     -- Git gutter
     use 'airblade/vim-gitgutter'
