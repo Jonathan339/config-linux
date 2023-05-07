@@ -31,7 +31,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Path a la instalación de Oh-My-Zsh
 export ZSH="/home/$_user/.oh-my-zsh"
 
-ZSH_THEME="nanotech"
+ZSH_THEME="agnoster"
 
 # Descomentar la siguiente línea para habilitar la autocompletado sensible a mayúsculas y minúsculas.
 CASE_SENSITIVE="false"
