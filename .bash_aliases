@@ -1,5 +1,5 @@
 alias code='which code | code .'
-
+alias expo="yarn create expo-app"
 
 _emulator='$(emulator -list-avds)'
 alias androidemulator='emulator -avd $_emulator'
