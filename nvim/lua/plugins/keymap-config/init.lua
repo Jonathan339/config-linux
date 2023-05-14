@@ -44,8 +44,8 @@ vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {silen
 vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<C-h>"', {silent = true, expr = true})
 
 ---
-vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope file_browser", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope file_browser <CR>", { noremap = true })
 
 -- open file_browser with the path of the current buffer
-vim.api.nvim_set_keymap("n","<leader>f",":Telescope file_browser path=%:p:h select_buffer=true",
+vim.api.nvim_set_keymap("n","<leader>f",":Telescope file_browser path=%:p:h select_buffer=true <CR>",
   { noremap = true })
