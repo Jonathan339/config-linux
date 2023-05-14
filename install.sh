@@ -80,6 +80,13 @@ clean() {
     { echo -e "\e[31mOcurrió un error al limpiar\e[0m"; exit 1; }
 }
 
+install_nerd_fonts() {
+  echo -e "\e[34mInstalando nerd-fonts...\e[0m"
+  mkdir -p ~/.local/share/fonts
+  cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf || \
+    { echo -e "\e[31mOcurrió un error al descargar las fuentes nerd-fonts\e[0m"; exit 1; }
+}
+
 # Función para instalar todo
 install_all() {
   install_packages
@@ -87,6 +94,7 @@ install_all() {
   install_alacritty
   install_android_studio
   install_spotify
+  install_nerd_fonts
 }
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
