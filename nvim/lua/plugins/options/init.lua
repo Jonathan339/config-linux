@@ -62,6 +62,9 @@ vim.o.signcolumn = "yes"
 -- No utilizar un tipo de buffer específico
 vim.o.buftype = ""
 
+-- Habilitar el autocompletado de archivos (wildmenu)
+vim.o.wildmenu = true
+
 -- Configuración de opciones de complementación
 vim.g.completion_enable_snippet = 'vim-vsnip'
 vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}

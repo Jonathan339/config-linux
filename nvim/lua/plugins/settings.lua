@@ -1,4 +1,4 @@
-require("plugins.packer-config.init")
+e,quire("plugins.packer-config.init")
 require("plugins.coc.init")
 require("plugins.keymap-config.init")
 require("plugins.options.init")
