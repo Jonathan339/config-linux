@@ -67,9 +67,16 @@ install_android_studio() {
 
 # Función para instalar Spotify
 install_spotify() {
-  echo "Instalando Spotify..."
+  echo -e "\e[34mInstalando Spotify...\e[0m"
   sudo snap install spotify || \
-    { echo -e "\e[31mOcurrió un error al instalar spotify\e[0m"; exit 1; }
+    { echo -e "\e[31mOcurrió un error al instalar Spotify\e[0m"; exit 1; }
+}
+
+# Función para instalar Visual Studio Code
+install_vscode() {
+  echo -e "\e[34mInstalando Visual Studio Code...\e[0m"
+  sudo snap install code --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar Visual Studio Code\e[0m"; exit 1; }
 }
     
 # Función para limpiar
@@ -94,12 +101,14 @@ install_all() {
   install_alacritty
   install_android_studio
   install_spotify
+  install_vscode
   install_nerd_fonts
 }
+
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
 
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Limpiar" "Salir"
+select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Limpiar" "Salir"
 do
   case $opcion in
     "Instalar todo")
@@ -119,6 +128,9 @@ do
       ;;
     "Instalar Spotify")
       install_spotify
+      ;;
+    "Instalar Visual Studio Code")
+      install_vscode
       ;;
     "Limpiar")
       clean
