@@ -1,6 +1,6 @@
 alias code='which code | code .'
 alias expo="yarn create expo-app"
-
+alias android='yarn android && code .'
 _emulator='$(emulator -list-avds)'
 alias androidemulator='emulator -avd $_emulator'
 alias update='sudo apt update && sudo apt upgrade -y'
