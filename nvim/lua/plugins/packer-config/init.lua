@@ -36,9 +36,24 @@ end
 require('packer').startup(function()
     -- Configuración de los complementos utilizando Packer
     use 'wbthomason/packer.nvim' -- Administrador de complementos (Packer)
-    use {'neoclide/coc.nvim', branch = 'release'} -- Motor de finalización de código
-    use 'gruvbox-community/gruvbox' -- Tema de color
-    use 'nvim-lualine/lualine.nvim' -- Barra de estado
+    ----------------------------------------
+    -- Complementos de edición y apariencia --
+    ----------------------------------------
+
+    -- Gestión del entorno de desarrollo integrado
+    use {'neoclide/coc.nvim', branch = 'release'}
+
+    -- Tema de color
+    use 'gruvbox-community/gruvbox'
+
+    -- Barra de estado
+    use 'nvim-lualine/lualine.nvim'
+
+    ------------------------------------------------
+    -- Complementos de exploración y navegación  --
+    ------------------------------------------------
+
+    -- Explorador de archivos
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -46,29 +61,77 @@ require('packer').startup(function()
             "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim"
         }
-    } -- Explorador de archivos y directorios
+    }
+
+    -- Búsqueda y selección de archivos
     use {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.1',
         requires = {{'nvim-lua/plenary.nvim'}}
-    } -- Buscador y selector de archivos
-    use 'nvim-telescope/telescope-file-browser.nvim' -- Integración de Telescope con el explorador de archivos
-    use 'nvim-lua/plenary.nvim' -- Biblioteca de Lua para el desarrollo de complementos
-    use 'airblade/vim-gitgutter' -- Marcas de cambio de Git en el margen
-    use 'Pocco81/auto-save.nvim' -- Guardado automático de archivos
-    use 'jmcantrell/vim-virtualenv' -- Soporte para entornos virtuales de Python
-    use {'prettier/vim-prettier', run = 'yarn install'} -- Formateador de código Prettier
-    use 'nvim-treesitter/nvim-treesitter' -- Análisis sintáctico de árbol
-    use 'nvim-tree/nvim-web-devicons' -- Iconos para el explorador de archivos
-    use {'junegunn/fzf', dir = '~/.fzf', run = './install --all'} -- Utilidad de búsqueda FZF
-    use 'junegunn/fzf.vim' -- Integración de FZF con Vim
-    use 'scrooloose/nerdtree' -- Explorador de archivos estilo NERDTree
-    use 'christoomey/vim-tmux-navigator' -- Navegación entre paneles de Vim y Tmux
-    use 'rcarriga/nvim-notify' -- Notificaciones emergentes
-    use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}} -- Iconos adicionales
-    use 'peitalin/vim-jsx-typescript' -- Integración con React (JSX y TypeScript)
-    use 'pangloss/vim-javascript' -- Soporte para JavaScript
-    use 'yuezk/vim-js' -- Mejoras para JavaScript
+    }
+    use 'nvim-telescope/telescope-file-browser.nvim'
+
+    ----------------------------------------
+    -- Complementos de utilidad y soporte --
+    ----------------------------------------
+
+    -- Funciones de utilidad de Lua
+    use 'nvim-lua/plenary.nvim'
+
+    -- Marcador de cambios en Git
+    use 'airblade/vim-gitgutter'
+
+    -- Guardar automáticamente los archivos
+    use 'Pocco81/auto-save.nvim'
+
+    -- Administrador de entornos virtuales
+    use 'jmcantrell/vim-virtualenv'
+
+    -- Formateo de código con Prettier
+    use {'prettier/vim-prettier', run = 'yarn install'}
+
+    -------------------------------------
+    -- Complementos de análisis de código --
+    -------------------------------------
+
+    -- Análisis sintáctico y resaltado de árbol
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-tree/nvim-web-devicons'
+
+    --------------------------------------
+    -- Complementos de productividad     --
+    --------------------------------------
+
+    -- Fuzzy Finder
+    use {'junegunn/fzf', dir = fzf_install_dir, run = './install --all'}
+    use 'junegunn/fzf.vim'
+
+    -- Explorador de archivos y directorios
+    use 'scrooloose/nerdtree'
+
+    -- Navegación fluida entre Neovim y tmux
+    use 'christoomey/vim-tmux-navigator'
+
+    -----------------------------------
+    -- Complementos de notificaciones --
+    -----------------------------------
+
+    -- Notificaciones emergentes
+    use 'rcarriga/nvim-notify'
+
+    -- Iconos adicionales
+    use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}}
+
+    -----------------------------------------
+    -- Complementos para desarrollo web     --
+    -----------------------------------------
+
+    -- Integración con React y TypeScript
+    use 'peitalin/vim-jsx-typescript'
+
+    -- Resaltado y soporte de JavaScript
+    use 'pangloss/vim-javascript'
+    use 'yuezk/vim-js'
 end)
 
 -- Configuración específica para pangloss/vim-javascript
@@ -79,7 +142,7 @@ vim.g.javascript_conceal_this = "@"
 
 -- Configuración para NERDTree
 vim.g.NERDTreeShowHidden = 1
-vim.cmd [[
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-]]
+-- vim.cmd [[
+--  autocmd StdinReadPre * let s:std_in=1
+--  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+-- ]]
