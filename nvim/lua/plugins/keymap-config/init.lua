@@ -33,14 +33,12 @@ vim.api.nvim_set_keymap('n', '<Leader>m', ':NERDTree<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>n', ':SnipRun<CR>', {noremap = true})
 
 -- Asignaciones de teclas para pickers de Telescope
-vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 
 
----
-vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope file_browser <CR>", { noremap = true })
-
 -- open file_browser with the path of the current buffer
-vim.api.nvim_set_keymap("n","<leader>f",":Telescope file_browser path=%:p:h select_buffer=true <CR>",
-  { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>f', [[<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({}))<CR>]], { noremap = true, silent = true })
+
+-- Cambiar una opción
+vim.api.nvim_set_keymap('n', '<Leader>f', [[<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown({ winblend = 10 }))<CR>]], { noremap = true, silent = true })
