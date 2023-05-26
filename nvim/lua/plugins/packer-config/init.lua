@@ -1,41 +1,42 @@
--- Verifica si Packer está instalado y, de lo contrario, lo instala automáticamente
-local packer_install_path = vim.fn.stdpath('data') ..
-                                '/site/pack/packer/start/packer.nvim'
+-- Rutas de complementos y variables
+local packer_install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local fzf_install_dir = '~/.fzf'
+
+-- Instalación automática de Packer si aún no está instalado
 if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-    -- Clona el repositorio de Packer si no está presente
     vim.fn.system({
         'git', 'clone', '--depth', '1',
         'https://github.com/wbthomason/packer.nvim', packer_install_path
     })
-    -- Carga Packer para que esté disponible
     vim.cmd [[packadd packer.nvim]]
 end
 
+-- Verificar si Packer está instalado correctamente
 local packer_ok, packer = pcall(require, "packer")
 if not packer_ok then return end
 
+-- Autocomandos para Packer
 vim.cmd [[
   augroup Packer_aug
     autocmd!
-    -- Auto-actualización de Packer después de guardar el archivo plugins.lua
     autocmd BufWritePost plugins.lua PackerCompile
-    -- Limpia los complementos no utilizados después de guardar el archivo plugins.lua
     autocmd BufWritePost plugins.lua PackerClean
-    -- Instala los complementos nuevos o actualizados después de guardar el archivo plugins.lua
     autocmd BufWritePost plugins.lua PackerInstall
   augroup END
 ]]
 
--- Función para limpiar, instalar y compilar los complementos con Packer
+-- Función para limpiar, instalar y compilar complementos con Packer
 function packer_cleanup_install_compile()
     vim.cmd([[PackerClean]])
     vim.cmd([[PackerInstall]])
     vim.cmd([[PackerCompile]])
 end
 
+-- Configuración de complementos
 require('packer').startup(function()
-    -- Configuración de los complementos utilizando Packer
-    use 'wbthomason/packer.nvim' -- Administrador de complementos (Packer)
+    -- Administrador de complementos
+    use 'wbthomason/packer.nvim'
+
     ----------------------------------------
     -- Complementos de edición y apariencia --
     ----------------------------------------
@@ -134,15 +135,15 @@ require('packer').startup(function()
     use 'yuezk/vim-js'
 end)
 
--- Configuración específica para pangloss/vim-javascript
+-- Configuración específica para complementos de JavaScript
 vim.g.javascript_plugin_flow = 1
 vim.g.javascript_conceal_function = "ƒ"
 vim.g.javascript_conceal_null = "ø"
 vim.g.javascript_conceal_this = "@"
 
--- Configuración para NERDTree
+-- Configuración de NERDTree
 vim.g.NERDTreeShowHidden = 1
--- vim.cmd [[
+--vim.cmd [[
 --  autocmd StdinReadPre * let s:std_in=1
 --  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
--- ]]
+--]]
