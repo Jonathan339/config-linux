@@ -33,6 +33,10 @@ require('packer').startup(function()
     -- Plugin manager
     use 'wbthomason/packer.nvim'
 
+
+    --
+    use {'neoclide/coc.nvim', branch = 'release'}
+
     -- Tema de color
     use 'gruvbox-community/gruvbox'
 
@@ -66,8 +70,6 @@ require('packer').startup(function()
     -- Prettier
     use {'prettier/vim-prettier', run = 'yarn install'}
 
-    -- Configuración de LSP
-    use 'neovim/nvim-lspconfig'
 
     -- Análisis sintáctico de árbol
     use 'nvim-treesitter/nvim-treesitter'

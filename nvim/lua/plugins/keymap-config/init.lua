@@ -37,11 +37,6 @@ vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 
--- Mapear las teclas de navegación para el autocompletado
-vim.api.nvim_set_keymap('i', '<C-n>', 'coc#refresh()<CR>', {silent = true, expr = true})
-vim.api.nvim_set_keymap('i', '<C-p>', 'coc#refresh()<CR>', {silent = true, expr = true})
-vim.api.nvim_set_keymap('i', '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', {silent = true, expr = true})
-vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<C-h>"', {silent = true, expr = true})
 
 ---
 vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope file_browser <CR>", { noremap = true })
