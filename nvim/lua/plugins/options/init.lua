@@ -82,3 +82,9 @@ vim.o.runtimepath = vim.o.runtimepath .. ',~/.local/share/nvim/site/'
 vim.g.virtualenv_python = 'python3'  -- Cambiar a la ruta correcta de tu ejecutable de Python
 vim.cmd([[autocmd FileType python autocmd BufReadPost,BufNewFile * VirtualEnvActivate]])
 
+
+function ReloadConfig()
+    vim.cmd("source ~/.config/nvim/init.vim")
+    print("Configuración recargada.")
+end
+

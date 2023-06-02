@@ -1,5 +1,6 @@
 -- Rutas de complementos y variables
-local packer_install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_install_path = vim.fn.stdpath('data') ..
+                                '/site/pack/packer/start/packer.nvim'
 local fzf_install_dir = '~/.fzf'
 
 -- Instalación automática de Packer si aún no está instalado
@@ -42,7 +43,19 @@ require('packer').startup(function()
     ----------------------------------------
 
     -- Gestión del entorno de desarrollo integrado
-    use {'neoclide/coc.nvim', branch = 'release'}
+    -- https://github.com/VonHeikemen/lsp-zero.nvim
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        requires = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'}, {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'}, -- Autocompletion
+            {'hrsh7th/nvim-cmp'}, {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'},
+            {'saadparwaiz1/cmp_luasnip'}, {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'}, -- Snippets
+            {'L3MON4D3/LuaSnip'}, {'rafamadriz/friendly-snippets'}
+        }
+    }
 
     -- Tema de color
     use 'gruvbox-community/gruvbox'
@@ -143,7 +156,7 @@ vim.g.javascript_conceal_this = "@"
 
 -- Configuración de NERDTree
 vim.g.NERDTreeShowHidden = 1
---vim.cmd [[
+-- vim.cmd [[
 --  autocmd StdinReadPre * let s:std_in=1
 --  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
---]]
+-- ]]
