@@ -4,14 +4,13 @@
 chmod +x install.sh
 ```
 
+## Configuración
 
-## Configuración 
 - .vimrc
 - .zshrc
 - .bash_aliases
 - nvim
 - .vim
-
 
 ## Aplicaciónes
 
@@ -26,4 +25,3 @@ chmod +x install.sh
 - nvim
 - yarn
 - sublime merge
-

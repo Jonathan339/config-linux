@@ -115,6 +115,8 @@ require('packer').startup(function()
     --------------------------------------
     -- Complementos de productividad     --
     --------------------------------------
+    -- Codeium 
+    use 'Exafunction/codeium.vim'
 
     -- Fuzzy Finder
     use {'junegunn/fzf', dir = fzf_install_dir, run = './install --all'}
@@ -160,3 +162,6 @@ vim.g.NERDTreeShowHidden = 1
 --  autocmd StdinReadPre * let s:std_in=1
 --  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 -- ]]
+
+
+
