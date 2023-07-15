@@ -7,10 +7,10 @@ fi
 _user="$(id -u -n)"
 
 # Configuración de Virtualenvwrapper:
-# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-# export WORKON_HOME=$HOME/.virtualenvs
-# export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
-# source ~/.local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
+source ~/.local/bin/virtualenvwrapper.sh
 
 # Configuración del path de Java
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
@@ -38,20 +38,18 @@ CASE_SENSITIVE="false"
 
 # Descomentar la siguiente línea para cambiar la frecuencia de auto-actualización (en días).
 export UPDATE_ZSH_DAYS=7
+DISABLE_FZF_AUTO_COMPLETION="true"
+
 
 # ¿Qué plugins deseas cargar?
 # Los plugins estándar se encuentran en $ZSH/plugins/
 # Los plugins personalizados pueden ser agregados a $ZSH_CUSTOM/plugins/
 # Formato de ejemplo: plugins=(rails git textmate ruby lighthouse)
 # Agrega sabiamente, ya que muchos plugins hacen más lento el inicio del shell.
-plugins=(git)
+plugins=(git virtualenvwrapper tmux  zsh-interactive-cd sublime-merge themes fzf  command-not-found autopep8 )
 
 # Incluir Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
-
-# Ejemplo de aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Incluir fzf si existe el archivo
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
