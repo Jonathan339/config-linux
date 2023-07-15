@@ -45,6 +45,7 @@ install_package_if_not_installed() {
 copy_config_files() {
   echo -e "\e[34mCopiando archivos de configuración...\e[0m"
   cp -r .zshrc ~/
+  cp -r .bashrc ~/
   cp -r .bash_aliases ~/
   cp -r nvim ~/.config/
   mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ || \
@@ -65,6 +66,17 @@ install_android_studio() {
     { echo -e "\e[31mOcurrió un error al instalar Android Studio\e[0m"; exit 1; }
 }
 
+# Función para instalar Yarn
+install_yarn() {
+  echo -e "\e[34mInstalando Visual Studio Code...\e[0m"
+   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+   sudo apt install yarn || \
+  { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
+}
+
+
+
 # Función para instalar Spotify
 install_spotify() {
   echo -e "\e[34mInstalando Spotify...\e[0m"
@@ -78,11 +90,18 @@ install_vscode() {
   sudo snap install code --classic || \
     { echo -e "\e[31mOcurrió un error al instalar Visual Studio Code\e[0m"; exit 1; }
 }
+
+# Función para instalar nvim
+install_nvim() {
+  echo -e "\e[34mInstalando nvim...\e[0m"
+  sudo snap install nvim --beta --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar nvim\e[0m"; exit 1; }
+}
     
 # Función para limpiar
 clean() {
   echo -e "\e[34mLimpieza...\e"
-  sudo apt autoremove -y
+ sudo apt autoremove -y
   sudo apt full-upgrade -y || \
     { echo -e "\e[31mOcurrió un error al limpiar\e[0m"; exit 1; }
 }
@@ -102,13 +121,15 @@ install_all() {
   install_android_studio
   install_spotify
   install_vscode
+  install_nvim
   install_nerd_fonts
+  install_yarn 
 }
 
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
 
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Limpiar" "Salir"
+select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Limpiar" "Salir"
 do
   case $opcion in
     "Instalar todo")
@@ -131,6 +152,9 @@ do
       ;;
     "Instalar Visual Studio Code")
       install_vscode
+      ;;
+    "Instalar nvim")
+      install_nvim
       ;;
     "Limpiar")
       clean
