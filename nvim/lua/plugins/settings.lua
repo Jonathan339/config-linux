@@ -7,5 +7,5 @@ require("plugins.telescope.init")
 require("plugins.telescope-file-browser.init")
 require("plugins.lualine.init")
 require("plugins.notifity.init")
-
+require("plugins.gitgutter.init")
 
