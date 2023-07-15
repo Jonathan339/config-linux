@@ -15,6 +15,7 @@ declare -a packages=(
   libssl-dev
   openjdk-11-jre
   fzf
+  tmux
   fonts-powerline
 )
 
