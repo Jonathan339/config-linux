@@ -147,6 +147,7 @@ install_all() {
   install_nvim
   install_nerd_fonts
   install_yarn 
+  install_kitty_themes 
   install_nodejs 
 }
 
