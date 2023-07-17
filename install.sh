@@ -17,6 +17,7 @@ declare -a packages=(
   fzf
   tmux
   fonts-powerline
+  kitty 
 )
 
 # Función para instalar paquetes
@@ -49,6 +50,7 @@ copy_config_files() {
   cp -r .bashrc ~/
   cp -r .bash_aliases ~/
   cp -r nvim ~/.config/
+  mkdir -p ~/.config/kitty && cp -r kitty.conf ~/.config/kitty/
   mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ || \
     { echo -e "\e[31mOcurrió un error al copiar los archivos de configuración\e[0m"; exit 1; }
 }
@@ -59,6 +61,16 @@ install_alacritty() {
   sudo snap install alacritty --classic || \
     { echo -e "\e[31mOcurrió un error al instalar Alacritty\e[0m"; exit 1; }
 }
+
+# Función para instalar kitty-themes
+install_kitty_themes() {
+  echo -e "\e[34mInstalando kitty-themes...\e[0m"
+
+  git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes || \
+    { echo -e "\e[31mOcurrió un error al instalar kitty-themes\e[0m"; exit 1; }
+}
+
+
 
 # Función para instalar Android Studio
 install_android_studio() {
@@ -84,6 +96,16 @@ install_spotify() {
   sudo snap install spotify || \
     { echo -e "\e[31mOcurrió un error al instalar Spotify\e[0m"; exit 1; }
 }
+
+#Función para instalar Nodejs 
+
+install_nodejs() {
+  echo -e "\e[34mInstalando Nodejs...\e[0m"
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+  sudo apt-get install -y nodejs || \
+   { echo -e "\e[31mOcurrió un error al instalar Nodejs\e[0m"; exit 1; }
+}
+
 
 # Función para instalar Visual Studio Code
 install_vscode() {
@@ -125,6 +147,7 @@ install_all() {
   install_nvim
   install_nerd_fonts
   install_yarn 
+  install_nodejs 
 }
 
 # Menú principal
