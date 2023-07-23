@@ -49,7 +49,6 @@ copy_config_files() {
   echo -e "\e[34mCopiando archivos de configuración...\e[0m"
   cp -r .zshrc ~/
   cp -r .bashrc ~/
-  cp -r .bash_aliases ~/
   cp -r nvim ~/.config/
   mkdir -p ~/.config/kitty && cp -r kitty.conf ~/.config/kitty/
   mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ || \
