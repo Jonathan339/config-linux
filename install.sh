@@ -17,7 +17,8 @@ declare -a packages=(
   fzf
   tmux
   fonts-powerline
-  kitty 
+  kitty
+  xclip
 )
 
 # Función para instalar paquetes
