@@ -151,10 +151,24 @@ install_all() {
   install_nodejs 
 }
 
+# Función para verificar si Kitty está instalado
+# Función para verificar si Kitty y sus temas están instalados
+kitty_is_installed() {
+  if ! command -v kitty &> /dev/null; then
+    return 1
+  fi
+
+  if [ ! -d "$HOME/.config/kitty/kitty-themes" ]; then
+    return 1
+  fi
+
+  return 0
+}
+
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
 
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Limpiar" "Salir"
+select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Kitty y sus temas" "Limpiar" "Salir"
 do
   case $opcion in
     "Instalar todo")
@@ -181,6 +195,14 @@ do
     "Instalar nvim")
       install_nvim
       ;;
+    "Instalar Kitty y sus temas")
+      if ! kitty_is_installed; then
+        install_kitty_themes
+        install_package_if_not_installed "kitty"
+      else
+        echo -e "\e[32mKitty ya está instalado. Saltando...\e[0m"
+      fi
+      ;;
     "Limpiar")
       clean
       ;;
@@ -192,6 +214,5 @@ do
       echo "Opción inválida. Inténtalo de nuevo."
       ;;
   esac
-done
-
+done 
 echo -e "\033"
