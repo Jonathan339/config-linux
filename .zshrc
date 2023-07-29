@@ -10,7 +10,7 @@ _user="$(id -u -n)"
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
-
+source /home/$_user/.local/bin/virtualenvwrapper.sh
 # Configuración del path de Java
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 
