@@ -19,6 +19,7 @@ declare -a packages=(
   fonts-powerline
   kitty
   xclip
+  zsh
 )
 
 # Función para instalar paquetes
@@ -26,6 +27,73 @@ install_packages() {
   echo -e "\e[34mInstalando paquetes necesarios...\e[0m"
   sudo apt update && sudo apt install "${packages[@]}" -y || \
     { echo -e "\e[31mOcurrió un error al instalar paquetes\e[0m"; exit 1; }
+}
+
+# Función para instalar Android Studio
+install_android_studio() {
+  echo -e "\e[34mInstalando Android Studio...\e[0m"
+  sudo snap install android-studio --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar Android Studio\e[0m"; exit 1; }
+}
+
+# Función para instalar Spotify
+install_spotify() {
+  echo -e "\e[34mInstalando Spotify...\e[0m"
+  sudo snap install spotify || \
+    { echo -e "\e[31mOcurrió un error al instalar Spotify\e[0m"; exit 1; }
+}
+
+# Función para instalar Visual Studio Code
+install_vscode() {
+  echo -e "\e[34mInstalando Visual Studio Code...\e[0m"
+  sudo snap install code --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar Visual Studio Code\e[0m"; exit 1; }
+}
+
+# Función para instalar nvim
+install_nvim() {
+  echo -e "\e[34mInstalando nvim...\e[0m"
+  sudo snap install nvim --beta --classic || \
+    { echo -e "\e[31mOcurrió un error al instalar nvim\e[0m"; exit 1; }
+}
+
+# Función para instalar Oh My Zsh
+install_oh_my_zsh() {
+  echo -e "\e[34mInstalando Oh My Zsh...\e[0m"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
+    { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; }
+}
+
+# Función para instalar nerd-fonts
+install_nerd_fonts() {
+  echo -e "\e[34mInstalando nerd-fonts...\e[0m"
+  mkdir -p ~/.local/share/fonts
+  cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf || \
+    { echo -e "\e[31mOcurrió un error al descargar las fuentes nerd-fonts\e[0m"; exit 1; }
+}
+
+# Función para instalar Yarn
+install_yarn() {
+  echo -e "\e[34mInstalando Yarn...\e[0m"
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt update && sudo apt install yarn || \
+    { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
+}
+
+# Función para instalar kitty-themes
+install_kitty_themes() {
+  echo -e "\e[34mInstalando kitty-themes...\e[0m"
+  git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes || \
+    { echo -e "\e[31mOcurrió un error al instalar kitty-themes\e[0m"; exit 1; }
+}
+
+# Función para instalar Nodejs
+install_nodejs() {
+  echo -e "\e[34mInstalando Nodejs...\e[0m"
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs || \
+    { echo -e "\e[31mOcurrió un error al instalar Nodejs\e[0m"; exit 1; }
 }
 
 # Función para verificar si un paquete está instalado
@@ -44,131 +112,76 @@ install_package_if_not_installed() {
   fi
 }
 
+# Función para verificar la existencia de un archivo
+check_file_exists() {
+  if [ -f "$1" ]; then
+    echo -e "\e[32m$1 encontrado\e[0m"
+    return 0
+  else
+    echo -e "\e[31m$1 no encontrado\e[0m"
+    return 1
+  fi
+}
+
+# Función para verificar la existencia de un directorio
+check_directory_exists() {
+  if [ -d "$1" ]; then
+    echo -e "\e[32m$1 encontrado\e[0m"
+    return 0
+  else
+    echo -e "\e[31m$1 no encontrado\e[0m"
+    return 1
+  fi
+}
+
 # Función para copiar archivos de configuración
 copy_config_files() {
   echo -e "\e[34mCopiando archivos de configuración...\e[0m"
-  cp -r .zshrc ~/
-  cp -r .bashrc ~/
-  cp -r nvim ~/.config/
-  mkdir -p ~/.config/kitty && cp -r kitty.conf ~/.config/kitty/
-  mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ || \
-    { echo -e "\e[31mOcurrió un error al copiar los archivos de configuración\e[0m"; exit 1; }
+  success=true
+
+  # Comprobar si se copiaron todos los archivos
+  if ! (check_file_exists ".zshrc" && check_file_exists ".bashrc" && check_directory_exists "nvim" && check_file_exists "kitty.conf" && check_file_exists "alacritty.yml"); then
+    echo -e "\e[31mOcurrió un error al verificar los archivos de configuración\e[0m"
+    exit 1
+  fi
+
+  # Copiar archivos solo si existen
+  if check_file_exists ".zshrc"; then
+    cp -r .zshrc ~/ && echo -e "\e[32m.zshrc copiado con éxito\e[0m" || success=false
+  fi
+  if check_file_exists ".bashrc"; then
+    cp -r .bashrc ~/ && echo -e "\e[32m.bashrc copiado con éxito\e[0m" || success=false
+  fi
+  if check_directory_exists "nvim"; then
+    cp -r nvim ~/.config/ && echo -e "\e[32mnvim configuraciones copiadas con éxito\e[0m" || success=false
+  fi
+  if check_file_exists "kitty.conf"; then
+    mkdir -p ~/.config/kitty && cp -r kitty.conf ~/.config/kitty/ && echo -e "\e[32mkitty.conf copiado con éxito\e[0m" || success=false
+  fi
+  if check_file_exists "alacritty.yml"; then
+    mkdir -p ~/.config/alacritty && cp -r alacritty.yml ~/.config/alacritty/ && echo -e "\e[32malacritty.yml copiado con éxito\e[0m" || success=false
+  fi
+
+  if [ "$success" = false ]; then
+    echo -e "\e[31mOcurrió un error al copiar los archivos de configuración\e[0m"
+    exit 1
+  else
+    echo -e "\e[32mTodos los archivos de configuración copiados con éxito\e[0m"
+  fi
 }
 
-# Función para instalar Alacritty
-install_alacritty() {
-  echo -e "\e[34mInstalando Alacritty...\e[0m"
-  sudo snap install alacritty --classic || \
-    { echo -e "\e[31mOcurrió un error al instalar Alacritty\e[0m"; exit 1; }
-}
-
-# Función para instalar kitty-themes
-install_kitty_themes() {
-  echo -e "\e[34mInstalando kitty-themes...\e[0m"
-
-  git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes || \
-    { echo -e "\e[31mOcurrió un error al instalar kitty-themes\e[0m"; exit 1; }
-}
-
-
-
-# Función para instalar Android Studio
-install_android_studio() {
-  echo -e "\e[34mInstalando Android Studio...\e[0m"
-  sudo snap install android-studio --classic || \
-    { echo -e "\e[31mOcurrió un error al instalar Android Studio\e[0m"; exit 1; }
-}
-
-# Función para instalar Yarn
-install_yarn() {
-  echo -e "\e[34mInstalando Visual Studio Code...\e[0m"
-   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-   sudo apt install yarn || \
-  { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
-}
-
-
-
-# Función para instalar Spotify
-install_spotify() {
-  echo -e "\e[34mInstalando Spotify...\e[0m"
-  sudo snap install spotify || \
-    { echo -e "\e[31mOcurrió un error al instalar Spotify\e[0m"; exit 1; }
-}
-
-#Función para instalar Nodejs 
-
-install_nodejs() {
-  echo -e "\e[34mInstalando Nodejs...\e[0m"
-  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-  sudo apt-get install -y nodejs || \
-   { echo -e "\e[31mOcurrió un error al instalar Nodejs\e[0m"; exit 1; }
-}
-
-
-# Función para instalar Visual Studio Code
-install_vscode() {
-  echo -e "\e[34mInstalando Visual Studio Code...\e[0m"
-  sudo snap install code --classic || \
-    { echo -e "\e[31mOcurrió un error al instalar Visual Studio Code\e[0m"; exit 1; }
-}
-
-# Función para instalar nvim
-install_nvim() {
-  echo -e "\e[34mInstalando nvim...\e[0m"
-  sudo snap install nvim --beta --classic || \
-    { echo -e "\e[31mOcurrió un error al instalar nvim\e[0m"; exit 1; }
-}
-    
 # Función para limpiar
 clean() {
   echo -e "\e[34mLimpieza...\e"
- sudo apt autoremove -y
+  sudo apt autoremove -y
   sudo apt full-upgrade -y || \
     { echo -e "\e[31mOcurrió un error al limpiar\e[0m"; exit 1; }
-}
-
-install_nerd_fonts() {
-  echo -e "\e[34mInstalando nerd-fonts...\e[0m"
-  mkdir -p ~/.local/share/fonts
-  cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf || \
-    { echo -e "\e[31mOcurrió un error al descargar las fuentes nerd-fonts\e[0m"; exit 1; }
-}
-
-# Función para instalar todo
-install_all() {
-  install_packages
-  copy_config_files
-  install_alacritty
-  install_android_studio
-  install_spotify
-  install_vscode
-  install_nvim
-  install_nerd_fonts
-  install_yarn 
-  install_kitty_themes 
-  install_nodejs 
-}
-
-# Función para verificar si Kitty está instalado
-# Función para verificar si Kitty y sus temas están instalados
-kitty_is_installed() {
-  if ! command -v kitty &> /dev/null; then
-    return 1
-  fi
-
-  if [ ! -d "$HOME/.config/kitty/kitty-themes" ]; then
-    return 1
-  fi
-
-  return 0
 }
 
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
 
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Kitty y sus temas" "Limpiar" "Salir"
+select opcion in "Instalar todo" "Instalar paquetes" "Instalar Alacritty" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Oh My Zsh" "Instalar nerd-fonts" "Instalar Yarn" "Instalar kitty-themes" "Instalar Nodejs" "Copiar archivos de configuración" "Limpiar" "Salir"
 do
   case $opcion in
     "Instalar todo")
@@ -176,12 +189,6 @@ do
       ;;
     "Instalar paquetes")
       install_packages
-      ;;
-    "Copiar archivos de configuración")
-      copy_config_files
-      ;;
-    "Instalar Alacritty")
-      install_alacritty
       ;;
     "Instalar Android Studio")
       install_android_studio
@@ -195,13 +202,23 @@ do
     "Instalar nvim")
       install_nvim
       ;;
-    "Instalar Kitty y sus temas")
-      if ! kitty_is_installed; then
-        install_kitty_themes
-        install_package_if_not_installed "kitty"
-      else
-        echo -e "\e[32mKitty ya está instalado. Saltando...\e[0m"
-      fi
+    "Instalar Oh My Zsh")
+      install_oh_my_zsh
+      ;;
+    "Instalar nerd-fonts")
+      install_nerd_fonts
+      ;;
+    "Instalar Yarn")
+      install_yarn
+      ;;
+    "Instalar kitty-themes")
+      install_kitty_themes
+      ;;
+    "Instalar Nodejs")
+      install_nodejs
+      ;;
+    "Copiar archivos de configuración")
+      copy_config_files
       ;;
     "Limpiar")
       clean
@@ -214,5 +231,4 @@ do
       echo "Opción inválida. Inténtalo de nuevo."
       ;;
   esac
-done 
-echo -e "\033"
+done
