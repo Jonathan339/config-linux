@@ -15,7 +15,10 @@ source /home/$_user/.local/bin/virtualenvwrapper.sh
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 
 # Agregar el path de yarn global
-export PATH="$PATH:$(yarn global bin)"
+yarn_global_bin=$(yarn global bin)
+if [ -n "$yarn_global_bin" ]; then
+  export PATH="$PATH:$yarn_global_bin"
+fi
 
 # Configuración del path de Android
 export ANDROID_HOME=$HOME/Android/Sdk
