@@ -1,4 +1,13 @@
 .vim/plugged/
 .vim/autoload/
 .DS_Store
+plugin/packer_compiled.lua
+# Vim
+Session.vim
+.vim/bundle/
+.vimrc_sample
+.vim/ftdetect/Dockerfile.vim
+.vim/syntax/Dockerfile.vim
+.vim/snippets/
+
 .netrwhist
