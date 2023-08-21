@@ -1,7 +1,7 @@
 .vim/plugged/
 .vim/autoload/
 .DS_Store
-plugin/packer_compiled.lua
+nvim/plugin/packer_compiled.lua
 # Vim
 Session.vim
 .vim/bundle/
@@ -9,5 +9,16 @@ Session.vim
 .vim/ftdetect/Dockerfile.vim
 .vim/syntax/Dockerfile.vim
 .vim/snippets/
+packer.nvim
+# Swap
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
 
+# Session
+Session.vim
+Sessionx.vim
 .netrwhist
