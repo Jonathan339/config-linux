@@ -189,7 +189,6 @@ do
     "Instalar todo")
       install_packages
       copy_config_files
-      install_oh_my_zsh
       install_kitty_themes
       install_android_studio
       install_spotify
@@ -197,6 +196,7 @@ do
       install_nvim
       install_nodejs
       install_yarn
+      install_oh_my_zsh
       ;;
     "Instalar paquetes")
       install_packages
