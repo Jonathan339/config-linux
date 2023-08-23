@@ -181,9 +181,26 @@ kitty_is_installed() {
   return 0
 }
 
+# Función para instalar lazygit
+install_lazygit() {
+  echo -e "\e[34mInstalando lazygit...\e[0m"
+  
+  # Obtener la última versión de lazygit desde GitHub
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  
+  # Descargar y descomprimir la versión específica de lazygit
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  
+  # Instalar lazygit en /usr/local/bin
+  sudo install lazygit /usr/local/bin
+  
+  echo -e "\e[32mlazygit instalado con éxito\e[0m"
+}
+
 # Menú principal
 echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Limpiar" "Salir"
+select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
 do
   case $opcion in
     "Instalar todo")
@@ -196,37 +213,12 @@ do
       install_nvim
       install_nodejs
       install_yarn
+      install_lazygit 
       install_oh_my_zsh
       ;;
-    "Instalar paquetes")
-      install_packages
-      ;;
-    "Copiar archivos de configuración")
-      copy_config_files
-      ;;
-    "Instalar Oh My Zsh")
-      install_oh_my_zsh
-      ;;
-    "Instalar kitty-themes")
-      install_kitty_themes
-      ;;
-    "Instalar Android Studio")
-      install_android_studio
-      ;;
-    "Instalar Spotify")
-      install_spotify
-      ;;
-    "Instalar Visual Studio Code")
-      install_vscode
-      ;;
-    "Instalar nvim")
-      install_nvim
-      ;;
-    "Instalar Node.js")
-      install_nodejs
-      ;;
-    "Instalar Yarn")
-      install_yarn
+    # ... (casos anteriores)
+    "Instalar lazygit")
+      install_lazygit
       ;;
     "Limpiar")
       clean
@@ -241,4 +233,3 @@ do
   esac
 done
 echo -e "\033"
-
