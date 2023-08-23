@@ -15,3 +15,5 @@ vim.api.nvim_set_keymap('n', '<Leader>i', ':PackerInstall<cr>', {noremap = true}
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<cr>', {noremap = true})
 -- Abrir buffers con Buffers
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Buffers<cr>', {noremap = true})
+-- terminal con ToggleTerm
+vim.api.nvim_set_keymap('n', '<Leader>t', ':ToggleTerm direction=float<cr>', {noremap = true})
