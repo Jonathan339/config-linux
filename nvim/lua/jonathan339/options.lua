@@ -55,6 +55,7 @@ vim.opt.winblend = 0
 vim.opt.completeopt = 'menu'
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
+vim.cmd([[autocmd BufWinEnter * setlocal modifiable]])
 
 -- Autocompletado
 vim.g.completion_enable_snippet = 'vim-vsnip'
