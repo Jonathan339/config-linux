@@ -198,38 +198,73 @@ install_lazygit() {
   echo -e "\e[32mlazygit instalado con éxito\e[0m"
 }
 
+# Función para instalar todo
+install_all() {
+  install_packages
+  copy_config_files
+  install_android_studio
+  install_spotify
+  install_vscode
+  install_nvim
+  install_nerd_fonts
+  install_yarn 
+  install_kitty_themes 
+  install_nodejs
+  install_lazygit
+  clean
+}
+
 # Menú principal
-echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
-select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
-do
-  case $opcion in
-    "Instalar todo")
-      install_packages
-      copy_config_files
-      install_kitty_themes
-      install_android_studio
-      install_spotify
-      install_vscode
-      install_nvim
-      install_nodejs
-      install_yarn
-      install_lazygit 
-      install_oh_my_zsh
-      ;;
-    # ... (casos anteriores)
-    "Instalar lazygit")
-      install_lazygit
-      ;;
-    "Limpiar")
-      clean
-      ;;
-    "Salir")
-      echo "Gracias por usar el instalador. Adiós."
-      break
-      ;;
-    *)
-      echo "Opción inválida. Inténtalo de nuevo."
-      ;;
-  esac
+while true; do
+  echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
+  select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
+  do
+    case $opcion in
+      "Instalar todo")
+        install_all
+        ;;
+      "Instalar paquetes")
+        install_packages
+        ;;
+      "Copiar archivos de configuración")
+        copy_config_files
+        ;;
+      "Instalar Oh My Zsh")
+        install_oh_my_zsh
+        ;;
+      "Instalar kitty-themes")
+        install_kitty_themes
+        ;;
+      "Instalar Android Studio")
+        install_android_studio
+        ;;
+      "Instalar Spotify")
+        install_spotify
+        ;;
+      "Instalar Visual Studio Code")
+        install_vscode
+        ;;
+      "Instalar nvim")
+        install_nvim
+        ;;
+      "Instalar Node.js")
+        install_nodejs
+        ;;
+      "Instalar Yarn")
+        install_yarn
+        ;;
+      "Instalar lazygit")
+        install_lazygit
+        ;;
+      "Limpiar")
+        clean
+        ;;
+      "Salir")
+        exit
+        ;;
+      *)
+        echo "Opción inválida. Inténtalo de nuevo."
+        ;;
+    esac
+  done
 done
-echo -e "\033"
