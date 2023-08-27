@@ -1,16 +1,41 @@
-.vim/plugged/
+S.vim/plugged/
 .vim/autoload/
 .DS_Store
-nvim/plugin/packer_compiled.lua
+dotfiles/nvim/plugin/packer_compiled.lua
 # Vim
-Session.vim
+Session.vimSS
 .vim/bundle/
 .vimrc_sample
 .vim/ftdetect/Dockerfile.vim
 .vim/syntax/Dockerfile.vim
 .vim/snippets/
 packer.nvim
+
+# Ignorar archivos y directorios generados
+*.swp
+*.swo
+*.un~
+
+# Ignorar archivos de respaldo de Vim
+*.bak
+
+# Ignorar archivos generados por Packer
+plugin/packer_compiled.lua
+
+
+# Ignorar registros y archivos de intercambio de Neovim
+*.nvim-log
+*.nvim-rc
+*.nvim-swap
+
+# Ignorar el directorio de compilación
+/build/
+
+
+
+
 # Swap
+
 [._]*.s[a-v][a-z]
 !*.svg  # comment out if you don't need vector files
 [._]*.sw[a-p]
@@ -22,3 +47,7 @@ packer.nvim
 Session.vim
 Sessionx.vim
 .netrwhist
+#Cache objects
+packer_cache/
+# Crash log
+crash.log
