@@ -22,6 +22,8 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim' -- Barra de estado
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
          requires = {{'nvim-lua/plenary.nvim'}}} -- Funciones de utilidad de Lua
+    use {"nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }}
     use {'akinsho/toggleterm.nvim', config = function()
         require("toggleterm").setup()
     end} -- Terminal flotante
@@ -43,30 +45,21 @@ require('packer').startup(function(use)
             'L3MON4D3/LuaSnip',
             'williamboman/mason.nvim', -- Optional
             'williamboman/mason-lspconfig.nvim' -- Optional
-        }
-    }
-end)
-
--- Autocomandos para Packer
-vim.cmd [[
-  augroup Packer_aug
-    autocmd!
-    autocmd BufWritePost plugins.lua PackerCompile
-    autocmd BufWritePost plugins.lua PackerClean
-    autocmd BufWritePost plugins.lua PackerInstall
-  augroup END
-]]
-
--- Función para limpiar, instalar y compilar complementos con Packer
---local function packer_cleanup_install_compile()
---    vim.cmd([[PackerClean]])
---    vim.cmd([[PackerInstall]])
---    vim.cmd([[PackerCompile]])
---end
+        }}
+    end)
 
 
 
--- Llamar a la función de limpieza, instalación y compilación de Packer
 
--- packer_cleanup_install_compile()
+--Función para limpiar, instalar y compilar complementos con Packer
+local function packer_cleanup_install_compile()
+    vim.cmd([[PackerClean]])
+    vim.cmd([[PackerInstall]])
+    vim.cmd([[PackerCompile]])
+end
+
+
+
+--Llamar a la función de limpieza, instalación y compilación de Packer
+packer_cleanup_install_compile()
 
