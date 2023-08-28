@@ -18,48 +18,35 @@ if not packer_ok then return end
 -- Configuración de complementos
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim' -- Administrador de complementos
-    use 'gruvbox-community/gruvbox' -- Tema de color
-    use 'nvim-lualine/lualine.nvim' -- Barra de estado
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.0',
-         requires = {{'nvim-lua/plenary.nvim'}}} -- Funciones de utilidad de Lua
-    use {"nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }}
-    use {'akinsho/toggleterm.nvim', config = function()
-        require("toggleterm").setup()
-    end} -- Terminal flotante
 
-    use 'airblade/vim-gitgutter' -- Marcador de cambios en Git
-    use 'Pocco81/auto-save.nvim' -- Guardar automáticamente los archivos
+    -- Complementos de Interfaz y Tema
+    use 'gruvbox-community/gruvbox'
+    use 'nvim-lualine/lualine.nvim'
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = {{'nvim-lua/plenary.nvim'}}}
+    use {"nvim-telescope/telescope-file-browser.nvim", requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"}}
+    use {'akinsho/toggleterm.nvim', config = function() require("toggleterm").setup() end}
 
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- Análisis sintáctico y resaltado de árbol
-    use 'nvim-tree/nvim-web-devicons' -- Iconos para nvim-tree
+    -- Complementos de Resaltado y Sintaxis
+    use 'airblade/vim-gitgutter'
+    use 'Pocco81/auto-save.nvim'
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'nvim-tree/nvim-web-devicons'
 
-    use 'Exafunction/codeium.vim' -- Codeium
+    -- Complementos de Productividad y Desarrollo
+    use 'Exafunction/codeium.vim'
+    use {'VonHeikemen/lsp-zero.nvim', branch = 'v2.x', requires = {
+        'neovim/nvim-lspconfig', 'hrsh7th/nvim-cmp', 'hrsh7th/cmp-nvim-lsp',
+        'L3MON4D3/LuaSnip', 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim'
+    }}
 
-    use {'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            'neovim/nvim-lspconfig', -- LSP Support
-            'hrsh7th/nvim-cmp', -- Autocompletion
-            'hrsh7th/cmp-nvim-lsp',
-            'L3MON4D3/LuaSnip',
-            'williamboman/mason.nvim', -- Optional
-            'williamboman/mason-lspconfig.nvim' -- Optional
-        }}
-    end)
+end)
 
-
-
-
---Función para limpiar, instalar y compilar complementos con Packer
+-- Función para limpiar, instalar y compilar complementos con Packer
 local function packer_cleanup_install_compile()
     vim.cmd([[PackerClean]])
     vim.cmd([[PackerInstall]])
     vim.cmd([[PackerCompile]])
 end
 
-
-
---Llamar a la función de limpieza, instalación y compilación de Packer
+-- Llamar a la función de limpieza, instalación y compilación de Packer
 packer_cleanup_install_compile()
-

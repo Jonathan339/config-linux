@@ -55,6 +55,9 @@ vim.opt.winblend = 0
 vim.opt.completeopt = 'menu'
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.modifiable = true
 vim.cmd([[autocmd BufWinEnter * setlocal modifiable]])
 
 -- Autocompletado
@@ -73,5 +76,3 @@ vim.cmd [[
   au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
   augroup END
 ]]
-
-

@@ -21,12 +21,12 @@ require("telescope").setup {
       git_status = true,
       mappings = {
         ["i"] = {
-          ["c"] = actions.create,
-          ["<S-CR>"] = actions.create_from_prompt,
-          ["<A-r>"] = actions.rename,
-          ["<A-m>"] = actions.move,
-          ["<A-y>"] = actions.copy,
-          ["<A-d>"] = actions.remove,
+          ["<C-c>"] = actions.create,
+          ["<C-R>"] = actions.create_from_prompt,
+          ["<C-r>"] = actions.rename,
+          ["<C-m>"] = actions.move,
+          ["<C-y>"] = actions.copy,
+          ["<C-d>"] = actions.remove,
           -- Otros mapeos personalizados para el modo inserción
         },
         ["n"] = {

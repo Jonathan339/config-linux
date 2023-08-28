@@ -1,23 +1,24 @@
 local lsp = require("lsp-zero")
 
+-- Cargar una configuración predefinida para el LSP
 lsp.preset("recommended")
 
+-- Asegurarse de que los siguientes servidores LSP estén instalados
 lsp.ensure_installed({
   'tsserver',
   'eslint',
   'pyright',
- 'jsonls',
+  'jsonls',
   'vimls',
   'bashls',
   'lua_ls',
 })
 
--- Fix Undefined global 'vim'
+-- Solucionar 'Undefined global vim'
 lsp.nvim_workspace()
 
-
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -32,6 +33,7 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
+-- Configuración de preferencias para el LSP
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
@@ -42,9 +44,11 @@ lsp.set_preferences({
     }
 })
 
+-- Función que se ejecuta cuando se conecta un cliente LSP
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+  local opts = { buffer = bufnr, remap = false }
 
+  -- Mapeos de teclas para acciones LSP
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
@@ -57,9 +61,10 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+-- Inicialización del LSP
 lsp.setup()
 
+-- Configuración de diagnósticos visuales
 vim.diagnostic.config({
     virtual_text = true
 })
-
