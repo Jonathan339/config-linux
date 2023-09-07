@@ -1,6 +1,8 @@
---- Configuración de la extensión telescope-file-browser.nvim
+
 local actions = require "telescope._extensions.file_browser.actions"
-local devicons = require "nvim-web-devicons"
+local devicons_status, devicons = pcall(require, "nvim-web-devicons")
+if not devicons_status then return end
+
 require("telescope").setup {
   extensions = {
     file_browser = {
@@ -44,14 +46,3 @@ require("telescope").setup {
 
 -- Cargar la extensión después de configurar
 require("telescope").load_extension "file_browser"
-
-
--- open file_browser with the path of the current buffer
-
-vim.api.nvim_set_keymap(
-  "n",
-  "<space>fb",
-  ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-  { noremap = true }
-)
-
