@@ -1,7 +1,5 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
-local lualine = require('lualine')
+local lualine_status, lualine = pcall(require, 'lualine')
+if (not lualine_status) then return end
 
 -- Color table for highlights
 -- stylua: ignore
