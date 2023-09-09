@@ -125,9 +125,7 @@ install_android_studio() {
 # Función para instalar Yarn
 install_yarn() {
   echo -e "\e[34mInstalando Yarn...\e[0m"
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  sudo apt update && sudo apt install yarn || \
+  sudo npm install --global yarn  || \
     { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
 }
 
