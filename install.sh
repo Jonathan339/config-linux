@@ -139,10 +139,16 @@ install_spotify() {
 #Función para instalar Node.js
 install_nodejs() {
   echo -e "\e[34mInstalando Node.js...\e[0m"
-  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-  sudo apt-get install -y nodejs || \
-    { echo -e "\e[31mOcurrió un error al instalar Node.js\e[0m"; exit 1; }
+  sudo curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.fnm" --skip-shell || {
+    echo -e "\e[31mOcurrió un error al instalar Node.js\e[0m"
+    exit 1
+  }
+  # Añadir fnm a la configuración de Zsh para que se cargue automáticamente
+  echo 'eval "$(fnm env --use-on-cd)"' >> ~/.zshrc
+
+  echo -e "\e[32mNode.js se ha instalado correctamente\e[0m"
 }
+
 
 # Función para instalar Visual Studio Code
 install_vscode() {
