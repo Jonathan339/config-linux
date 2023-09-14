@@ -27,6 +27,7 @@ packer.startup(function(use)
   use("wbthomason/packer.nvim") -- Administrador de complementos
 
   -- Complementos de Interfaz y Tema
+  use 'joshdick/onedark.vim'
   use("gruvbox-community/gruvbox")
   use("nvim-lualine/lualine.nvim")
   use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } })
@@ -37,7 +38,7 @@ packer.startup(function(use)
       require("toggleterm").setup()
     end,
   })
-  use 'rcarriga/nvim-notify'
+  -- use 'rcarriga/nvim-notify'
   use({
     "nvimdev/lspsaga.nvim",
     after = "nvim-lspconfig",
@@ -68,13 +69,18 @@ packer.startup(function(use)
       "williamboman/mason-lspconfig.nvim",
     },
   })
+  use 'onsails/lspkind.nvim'
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/vim-vsnip"
+  use "hrsh7th/vim-vsnip-integ"
   use("tpope/vim-commentary")
 
   -- Complementos de formateo y linters
   use("jose-elias-alvarez/null-ls.nvim")
   use("jay-babu/mason-null-ls.nvim")
 
-  use "lukas-reineke/lsp-format.nvim"
+
   use("scrooloose/nerdtree")
   use("christoomey/vim-tmux-navigator")
 end)
