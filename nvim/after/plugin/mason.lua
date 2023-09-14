@@ -1,30 +1,28 @@
-local mason_status, mason = pcall(require, "mason")
-if not mason_status then
-  return
-end
-
-local mason_lspconfig_status, lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lspconfig_status then
-  return
-end
-
+local status, mason = pcall(require, "mason")
+if (not status) then return end
+local status2, lspconfig = pcall(require, "mason-lspconfig")
+if (not status2) then return end
 
 mason.setup({
   ensure_installed = {
-    'lua_ls',
-    'tsserver',
-    'eslint',
-    'bashls',
-    'eslint-lsp',
-    'graphql-language-service-cli',
-    'json-lsp',
-    'lua-language-server',
-    'prettierd',
-    'rust-analyzer',
-    'stylua',
-    'typescript-language-server'
+    "rust_analyzer",
+    "lua_ls",
+    "tsserver",
+    "eslint",
+    "bashls",
+    "vimls",
+    "jsonls",
+    "pyright",
+    "yamlls",
+    "emmet_ls",
+    "html",
+    "graphql",
+    "zls",
+    "tailwindcss",
+    "dockerls",
+    "cssls",
   },
-  auto_update = true,
+
 })
 
 lspconfig.setup {
