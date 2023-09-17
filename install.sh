@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Variables de paquetes a instalar
 declare -a packages=(
@@ -107,9 +107,7 @@ install_oh_my_zsh() {
   fi
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  || \
     { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; } 
-  exit 0
 }
-
 # Función para instalar kitty-themes 
 install_kitty_themes() {
   echo -e "\e[34mInstalando kitty-themes...\e[0m"
@@ -224,7 +222,6 @@ install_lazygit() {
 install_all() {
   install_packages
   copy_config_files
-  install_oh_my_zsh 
   install_android_studio
   install_spotify
   install_vscode
@@ -235,7 +232,9 @@ install_all() {
   install_nodejs
   install_lazygit
   clean
-  source ~/.zshrc
+  install_oh_my_zsh
+  # zsh
+  # source ~/.zshrc
 }
 
 # Menú principal
