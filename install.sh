@@ -105,7 +105,7 @@ install_oh_my_zsh() {
     echo -e "\e[33mLa carpeta Oh My Zsh ya existe. Se sobrescribirá.\e[0m"
     rm -rf ~/.oh-my-zsh
   fi
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  || \
+    git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh || \
     { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; } 
 }
 # Función para instalar kitty-themes 
@@ -221,6 +221,7 @@ install_lazygit() {
 # Función para instalar todo
 install_all() {
   install_packages
+  install_oh_my_zsh
   copy_config_files
   install_android_studio
   install_spotify
@@ -232,7 +233,6 @@ install_all() {
   install_nodejs
   install_lazygit
   clean
-  install_oh_my_zsh
   # zsh
   # source ~/.zshrc
 }
