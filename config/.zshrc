@@ -11,14 +11,14 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV=/home/$_user/.local/bin/virtualenv
 source /home/$_user/.local/bin/virtualenvwrapper.sh
-# Configuración del path de Java
+# # Configuración del path de Java
 export JAVA_HOME=$(dirname $(dirname `readlink -f /etc/alternatives/java`))
 
 # Agregar el path de yarn global
-yarn_global_bin=$(yarn global bin)
-if [ -n "$yarn_global_bin" ]; then
-  export PATH="$PATH:$yarn_global_bin"
-fi
+# yarn_global_bin=$(yarn global bin)
+# if [ -n "$yarn_global_bin" ]; then
+#   export PATH="$PATH:$yarn_global_bin"
+# fi
 
 # Configuración del path de Android
 export ANDROID_HOME=$HOME/Android/Sdk

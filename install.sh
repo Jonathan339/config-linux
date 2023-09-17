@@ -67,52 +67,67 @@ check_directory_exists() {
   fi
 }
 
+
 # Función para copiar archivos de configuración
 copy_config_files() {
-  echo -e "\e[34mCopiando archivos de configuración...\e[0m"
+  echo -e "\e[34mCopiando archivos de configuración desde la carpeta 'config'...\e[0m"
   success=true
 
-  # Comprobar si se copiaron todos los archivos
-  if ! (check_file_exists ".zshrc" && check_file_exists ".bashrc" && check_directory_exists "nvim" && check_file_exists "kitty.conf"); then
-    echo -e "\e[31mOcurrió un error al verificar los archivos de configuración\e[0m"
-    exit 1
+  # Copiar archivos desde la carpeta "config" solo si existen
+  if check_file_exists "config/.zshrc"; then
+    cp -r "config/.zshrc" ~/ && echo -e "\e[32m.zshrc copiado con éxito\e[0m" || success=false
+  fi
+  if check_file_exists "config/.bashrc"; then
+    cp -r "config/.bashrc" ~/ && echo -e "\e[32m.bashrc copiado con éxito\e[0m" || success=false
+  fi
+  if check_directory_exists "config/nvim"; then
+    cp -r "config/nvim" ~/.config/ && echo -e "\e[32mnvim configuraciones copiadas con éxito\e[0m" || success=false
+  fi
+  if check_file_exists "config/kitty.conf"; then
+    mkdir -p ~/.config/kitty && cp -r "config/kitty.conf" ~/.config/kitty/ && echo -e "\e[32mkitty.conf copiado con éxito\e[0m" || success=false
   fi
 
-  # Copiar archivos solo si existen
-  if check_file_exists ".zshrc"; then
-    cp -r .zshrc ~/ && echo -e "\e[32m.zshrc copiado con éxito\e[0m" || success=false
-  fi
-  if check_file_exists ".bashrc"; then
-    cp -r .bashrc ~/ && echo -e "\e[32m.bashrc copiado con éxito\e[0m" || success=false
-  fi
-  if check_directory_exists "nvim"; then
-    cp -r nvim ~/.config/ && echo -e "\e[32mnvim configuraciones copiadas con éxito\e[0m" || success=false
-  fi
-  if check_file_exists "kitty.conf"; then
-    mkdir -p ~/.config/kitty && cp -r kitty.conf ~/.config/kitty/ && echo -e "\e[32mkitty.conf copiado con éxito\e[0m" || success=false
-  fi
+  wait # Esperar a que todas las operaciones asíncronas se completen
 
   if [ "$success" = false ]; then
-    echo -e "\e[31mOcurrió un error al copiar los archivos de configuración\e[0m"
+    echo -e "\e[31mOcurrió un error al copiar los archivos de configuración desde la carpeta 'config'\e[0m"
     exit 1
   else
-    echo -e "\e[32mTodos los archivos de configuración copiados con éxito\e[0m"
+    echo -e "\e[32mTodos los archivos de configuración copiados con éxito desde la carpeta 'config' \e[0m"
   fi
 }
+
 
 # Función para instalar Oh My Zsh
 install_oh_my_zsh() {
   echo -e "\e[34mInstalando Oh My Zsh...\e[0m"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
-    { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; }
+  if [ -d ~/.oh-my-zsh ]; then
+    echo -e "\e[33mLa carpeta Oh My Zsh ya existe. Se sobrescribirá.\e[0m"
+    rm -rf ~/.oh-my-zsh
+  fi
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"  || \
+    { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; } 
+  exit 0
 }
 
-# Función para instalar kitty-themes
+# Función para instalar kitty-themes 
 install_kitty_themes() {
   echo -e "\e[34mInstalando kitty-themes...\e[0m"
 
+  if [ -d ~/.config/kitty/kitty-themes ]; then
+    echo -e "\e[33mLa carpeta kitty-themes ya existe. Se sobrescribirá.\e[0m"
+    rm -rf ~/.config/kitty/kitty-themes
+  fi
+
   git clone --depth 1 https://github.com/dexpota/kitty-themes.git ~/.config/kitty/kitty-themes || \
     { echo -e "\e[31mOcurrió un error al instalar kitty-themes\e[0m"; exit 1; }
+}
+# Función para instalar nerd_fonts 
+install_nerd_fonts() {
+  echo -e "\e[34mInstalando nerd-fonts...\e[0m"
+  mkdir -p ~/.local/share/fonts
+  cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf || \
+    { echo -e "\e[31mOcurrió un error al descargar las fuentes nerd-fonts\e[0m"; exit 1; }
 }
 
 # Función para instalar Android Studio
@@ -125,7 +140,10 @@ install_android_studio() {
 # Función para instalar Yarn
 install_yarn() {
   echo -e "\e[34mInstalando Yarn...\e[0m"
-  sudo npm install --global yarn  || \
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt update && sudo apt install yarn -y | sudo cp /etc/apt/trusted.gpg /etc/apt/trusted.gpg.d || \
+    
     { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
 }
 
@@ -198,7 +216,7 @@ install_lazygit() {
   
   # Instalar lazygit en /usr/local/bin
   sudo install lazygit /usr/local/bin
-  
+  rm -rf lazygit lazygit.tar.gz
   echo -e "\e[32mlazygit instalado con éxito\e[0m"
 }
 
@@ -206,16 +224,18 @@ install_lazygit() {
 install_all() {
   install_packages
   copy_config_files
+  install_oh_my_zsh 
   install_android_studio
   install_spotify
   install_vscode
   install_nvim
   install_nerd_fonts
-  install_yarn 
+  install_yarn
   install_kitty_themes 
   install_nodejs
   install_lazygit
   clean
+  source ~/.zshrc
 }
 
 # Menú principal
