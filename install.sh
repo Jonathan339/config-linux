@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash 
 
 # Variables de paquetes a instalar
 declare -a packages=(
@@ -155,7 +155,7 @@ install_spotify() {
 #Función para instalar Node.js
 install_nodejs() {
   echo -e "\e[34mInstalando Node.js...\e[0m"
-  sudo curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "$HOME/.fnm" --skip-shell || {
+  curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash || {
     echo -e "\e[31mOcurrió un error al instalar Node.js\e[0m"
     exit 1
   }
