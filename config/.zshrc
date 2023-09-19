@@ -45,7 +45,7 @@ CASE_SENSITIVE="false"
 
 # Descomentar la siguiente línea para cambiar la frecuencia de auto-actualización (en días).
 export UPDATE_ZSH_DAYS=7
-DISABLE_FZF_AUTO_COMPLETION="true"
+DISABLE_FZF_AUTO_COMPLETION="false"
 
 # ¿Qué plugins deseas cargar?
 # Los plugins estándar se encuentran en $ZSH/plugins/

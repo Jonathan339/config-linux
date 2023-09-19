@@ -145,6 +145,15 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
     { echo -e "\e[31mOcurrió un error al instalar Yarn\e[0m"; exit 1; }
 }
 
+
+# Funcion para instalar Bun
+install_bun(){
+  echo -e "\e[34mInstalando Bun...\e[0m"
+  curl -fsSL https://bun.sh/install | bash || \
+    { echo -e "\e[31mOcurrió un error al instalar Bun\e[0m"; exit 1; }
+}
+
+
 # Función para instalar Spotify
 install_spotify() {
   echo -e "\e[34mInstalando Spotify...\e[0m"
@@ -223,6 +232,7 @@ install_all() {
   install_packages
   install_oh_my_zsh
   copy_config_files
+  install_bun
   install_android_studio
   install_spotify
   install_vscode
@@ -240,7 +250,7 @@ install_all() {
 # Menú principal
 while true; do
   echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
-  select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
+  select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Bun" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
   do
     case $opcion in
       "Instalar todo")
@@ -252,6 +262,10 @@ while true; do
       "Copiar archivos de configuración")
         copy_config_files
         ;;
+
+      " Instalar Bun")
+        install_bun;;
+
       "Instalar Oh My Zsh")
         install_oh_my_zsh
         ;;

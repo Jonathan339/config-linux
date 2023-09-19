@@ -3,7 +3,9 @@ if not status then return end
 
 saga.setup({
   ui = {
-    border = "rounded",
+    border = "single",
+    devicon = true,
+    title = true,
   },
   symbol_in_winbar = {
     enable = true,
