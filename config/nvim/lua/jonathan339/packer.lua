@@ -32,7 +32,10 @@ packer.startup(function(use)
   use("nvim-lualine/lualine.nvim")
   use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } })
   use 'nvim-telescope/telescope-file-browser.nvim'
+  use "nvim-telescope/telescope-live-grep-args.nvim"
+  use  { 'nvim-telescope/telescope-fzf-native.nvim',    build = 'make' }
   use({
+
     "akinsho/toggleterm.nvim",
     config = function()
       require("toggleterm").setup()
@@ -54,17 +57,24 @@ packer.startup(function(use)
   use("nvim-tree/nvim-web-devicons")
   use("windwp/nvim-autopairs")
   use("windwp/nvim-ts-autotag")
+  use 'folke/which-key.nvim'
   -- Complementos de Productividad y Desarrollo
+  --
   use("Exafunction/codeium.vim")
   use({
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
     requires = {
       "neovim/nvim-lspconfig",
-      "hrsh7th/nvim-cmp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "L3MON4D3/LuaSnip",
+      -- Autocompletion
+      { 'hrsh7th/nvim-cmp' },           -- Required
+      { 'hrsh7th/cmp-nvim-lsp' },       -- Required
+      { 'L3MON4D3/LuaSnip' },           -- Required
+      { "rafamadriz/friendly-snippets" },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'hrsh7th/cmp-cmdline' },
+      { 'saadparwaiz1/cmp_luasnip' },
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
     },
