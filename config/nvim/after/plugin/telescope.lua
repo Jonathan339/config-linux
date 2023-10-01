@@ -37,6 +37,3 @@ require("telescope").setup {
     },
   },
 }
-
--- Cargar la extensión después de con:figurar
-require("telescope").load_extension("file_browser")
