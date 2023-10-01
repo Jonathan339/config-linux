@@ -47,7 +47,8 @@ nmap('n', 'gr', ':lua require("telescope.builtin").lsp_references()<CR>', 'Refer
 nmap('n', 'gI', ':lua require("telescope.builtin").lsp_implementations()<CR>', 'Implementaciones con LSP')
 nmap('n', '<Leader>D', ':lua vim.lsp.buf.type_definition()<CR>', 'Definición de tipo con LSP')
 nmap('n', '<Leader>ds', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', 'Símbolos de documento con LSP')
-nmap('n', '<Leader>ws', ':lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>', 'Símbolos de espacio de trabajo con LSP')
+nmap('n', '<Leader>ws', ':lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>',
+  'Símbolos de espacio de trabajo con LSP')
 
 -- Ver documentación con K y Ctrl-K
 nmap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', 'Documentación emergente con LSP')
@@ -56,8 +57,10 @@ nmap('n', '<C-k>', ':lua vim.lsp.buf.signature_help()<CR>', 'Ayuda de firma con 
 -- Funcionalidad menos utilizada de LSP
 nmap('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', 'Ir a declaración con LSP')
 nmap('n', '<Leader>wa', ':lua vim.lsp.buf.add_workspace_folder()<CR>', 'Agregar carpeta de espacio de trabajo con LSP')
-nmap('n', '<Leader>wr', ':lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Eliminar carpeta de espacio de trabajo con LSP')
-nmap('n', '<Leader>wl', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'Listar carpetas de espacio de trabajo con LSP')
+nmap('n', '<Leader>wr', ':lua vim.lsp.buf.remove_workspace_folder()<CR>',
+  'Eliminar carpeta de espacio de trabajo con LSP')
+nmap('n', '<Leader>wl', ':lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+  'Listar carpetas de espacio de trabajo con LSP')
 
 -- Crear un comando `:Format` local para el buffer LSP
 nmap('n', '<Leader>F', ':lua vim.lsp.buf.formatting()<CR>', 'Formatear el buffer actual con LSP')

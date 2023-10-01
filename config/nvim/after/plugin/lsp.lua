@@ -8,6 +8,9 @@ require('luasnip.loaders.from_vscode').lazy_load()
 
 local cmp_action = require("lsp-zero").cmp_action()
 
+local lspkind = require("lspkind")
+
+
 local lsp_status, lsp = pcall(require, "lsp-zero")
 if not lsp_status then return end
 lsp.preset('recommended')
@@ -21,8 +24,11 @@ local cmp_mappings = {
   ["<Tab>"] = cmp_action.luasnip_supertab(),
   ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 }
-
 cmp.setup {
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -33,22 +39,28 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'codeium' },
-    { name = 'buffer', keyword_length = 3 },
+    { name = 'buffer',  keyword_length = 3 },
     { name = 'path' },
-  }, {
     {
       name = 'cmdline',
-      option = {
-        ignore_cmds = { 'Man', '!' },
-      },
+      option = { ignore_cmds = { 'Man', '!' }, },
     },
   }),
+  formatting = {
+    fields = { 'menu', 'abbr', 'kind' },
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        luasnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+        nvim_lua = 'Π',
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
+  },
 }
 
-lsp.on_attach(function(client, bufnr)
-  local opts = { buffer = bufnr, remap = false }
-end)
-
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()  -- ¡Agregamos la llamada a lsp.setup()!
+lsp.setup() -- ¡Agregamos la llamada a lsp.setup()!
