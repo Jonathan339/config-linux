@@ -4,26 +4,13 @@ local status2, lspconfig = pcall(require, "mason-lspconfig")
 if (not status2) then return end
 
 mason.setup({
-  ensure_installed = {
-    "rust_analyzer",
-    "lua_ls",
-    "tsserver",
-    "eslint",
-    "bashls",
-    "vimls",
-    "jsonls",
-    "pyright",
-    "yamlls",
-    "emmet_ls",
-    "html",
-    "graphql",
-    "zls",
-    "tailwindcss",
-    "dockerls",
-    "cssls",
-  },
-
-})
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }})
 
 lspconfig.setup {
   automatic_installation = true
