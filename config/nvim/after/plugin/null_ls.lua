@@ -1,83 +1,62 @@
 local status, null_ls = pcall(require, "null-ls")
-if (not status) then return end
+if not status then return end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local status_, lsp = pcall(require, "lsp-zero")
+if not status_ then return end
 
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.format({
-    filter = function(client)
-      return client.name == "null-ls"
-    end,
-    bufnr = bufnr,
-  })
-end
+lsp.preset("recommended")
 
+lsp.format_on_save({
+	format_opts = {
+		async = true,
+		timeout_ms = 10000,
+	},
+	servers = {
+		["null-ls"] = { "javascript", "typescript", "lua" },
+	},
+})
+
+lsp.setup()
+
+local null_opts = lsp.build_options("null-ls", {})
 local formatting = null_ls.builtins.formatting
 local code_actions = null_ls.builtins.code_actions
 local diagnostics = null_ls.builtins.diagnostics
 local completion = null_ls.builtins.completion
 local hover = null_ls.builtins.hover
-
 local sources = {
-  -- Formateo
-  formatting.lua_format,
-  formatting.stylua,
-  formatting.prettier_standard,
-  formatting.standardjs,  -- Formateo con standardjs
+	-- Formateo
+	formatting.stylua,
+	formatting.prettier,
+  formatting.black,
 
-  -- Diagnósticos
-  diagnostics.standardjs,  -- Diagnóstico con standardjs
-  diagnostics.jsonlint,
-  diagnostics.ktlint,
-  diagnostics.markdownlint,
-  diagnostics.protoc_gen_lint,
-  diagnostics.fish,
-  diagnostics.luacheck,
-  diagnostics.selene,
+	-- Diagnósticos
+	diagnostics.eslint,
+	diagnostics.jsonlint,
+	diagnostics.ktlint,
+	diagnostics.markdownlint,
+	diagnostics.protoc_gen_lint,
+	diagnostics.fish,
+	diagnostics.luacheck,
+  diagnostics.shellcheck,
 
-  -- Completado de ortografía
-  completion.spell,
-  completion.tags,
 
-  -- Acciones de código
-  code_actions.eslint,
-  code_actions.refactoring,
-  code_actions.statix,
-  --code_actions.ts_node_action,
-  -- Mantener para otras acciones de código
-  -- hover
-  hover.dictionary
-}
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+	-- Completado de ortografía
+	completion.spell,
+	completion.tags,
 
-local lsp_formatting = function(bufnr)
-  vim.lsp.buf.formatting({
-    bufnr = bufnr,
-  })
-end
-
-local null_ls = require("null-ls")
-local sources = {
-  -- Aquí debes agregar tus fuentes de null-ls, como formatting, diagnostics, etc.
+	-- Acciones de código
+	code_actions.refactoring,
+	-- hover
+	hover.dictionary,
 }
 
 null_ls.setup({
-  sources = sources,
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        cmd = "lua lsp_formatting(" .. bufnr .. ")",
-      })
-    end
-  end,
-  diagnostics_format = "[#{c}] #{m} (#{s})",
-  notify_format = "[null-ls] %s",
+	on_attach = function(client, bufnr)
+    null_opts.on_attach(client, bufnr)
+	end,
+	sources = sources,
+	diagnostics_format = "[#{c}] #{m} (#{s})",
+	notify_format = "[null-ls] %s",
 })
-
-vim.api.nvim_command(
-  'command! DisableLspFormatting lua vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })'
-)
