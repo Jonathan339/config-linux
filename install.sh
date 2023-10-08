@@ -108,6 +108,8 @@ install_oh_my_zsh() {
     git clone --depth 1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh || \
     { echo -e "\e[31mOcurrió un error al instalar Oh My Zsh\e[0m"; exit 1; } 
 }
+
+
 # Función para instalar kitty-themes 
 install_kitty_themes() {
   echo -e "\e[34mInstalando kitty-themes...\e[0m"
@@ -126,6 +128,14 @@ install_nerd_fonts() {
   mkdir -p ~/.local/share/fonts
   cd ~/.local/share/fonts && curl -fLO https://github.com/ryanoasis/nerd-fonts/raw/HEAD/patched-fonts/DroidSansMono/DroidSansMNerdFont-Regular.otf || \
     { echo -e "\e[31mOcurrió un error al descargar las fuentes nerd-fonts\e[0m"; exit 1; }
+}
+
+
+# Función para instalar Android Studio
+install_unlauncher() {
+  echo -e "\e[34mInstalando unlauncher...\e[0m"
+  sudo sudo add-apt-repository ppa:agornostal/ulauncher && sudo apt update  -y && sudo apt install ulauncher -y || \
+    { echo -e "\e[31mOcurrió un error al instalar unlauncher\e[0m"; exit 1; }
 }
 
 # Función para instalar Android Studio
@@ -232,6 +242,7 @@ install_all() {
   install_packages
   install_oh_my_zsh
   copy_config_files
+  install_unlauncher
   install_bun
   install_android_studio
   install_spotify
@@ -250,7 +261,7 @@ install_all() {
 # Menú principal
 while true; do
   echo "Bienvenido al instalador de paquetes. Por favor, elige una opción:"
-  select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar Bun" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
+  select opcion in "Instalar todo" "Instalar paquetes" "Copiar archivos de configuración" "Instalar unlauncher" "Instalar Bun" "Instalar Oh My Zsh" "Instalar kitty-themes" "Instalar Android Studio" "Instalar Spotify" "Instalar Visual Studio Code" "Instalar nvim" "Instalar Node.js" "Instalar Yarn" "Instalar lazygit" "Limpiar" "Salir"
   do
     case $opcion in
       "Instalar todo")
@@ -261,6 +272,10 @@ while true; do
         ;;
       "Copiar archivos de configuración")
         copy_config_files
+        ;;
+
+      "Instalar paquetes")
+        install_unlauncher
         ;;
 
       " Instalar Bun")
