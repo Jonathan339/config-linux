@@ -1,6 +1,6 @@
-require "core.lazy"
---require "core.options"
-require "core.keymaps"
-require "core.autocommands"
+require("core")
 
--- require "core.autocommands"
+
+
+
+
