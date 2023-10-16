@@ -1,5 +1,5 @@
 return {
-  "jay-babu/mason-null-ls.nvim",
+   "jay-babu/mason-null-ls.nvim" ,
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "williamboman/mason.nvim",
@@ -12,7 +12,7 @@ return {
     -- https://github.com/jay-babu/mason-null-ls.nvim#setup
     mason_null.setup({
         ensure_installed = nil,
-        automatic_installation = false, -- You can still set this to `true`
+        automatic_installation = true, -- You can still set this to `true`
         automatic_setup = true,
         handlers = {},
    -- 
