@@ -6,7 +6,9 @@ return {
     "nvim-telescope/telescope-file-browser.nvim", 
   },
   config = function()
-    require("telescope").setup()
+    require("telescope").setup({
+      defaults = { file_ignore_patterns = {"node_modules"} } 
+    })
     require("telescope").load_extension("file_browser")
     require("telescope").load_extension("live_grep_args")
  
