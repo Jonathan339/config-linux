@@ -9,16 +9,23 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
--- Leader/local leader - lazy.nvim needs these set first
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-vim.loader.enable()
-vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
---require("lazy").setup("plugins")
-require("lazy").setup({ { import = "plugins" }, 
-                        { import = "plugins.lsp" },
-                        { import = "plugins.editor" }, })
-                      
 
-                    
+vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+require("lazy").setup({ { import = "plugins" }, 
+{ import = "plugins.lsp" },
+{ import = "plugins.editor" },
+{ import = "plugins.ui" },
+
+}, {
+	install = {
+		colorscheme = { "onedark" },
+	},
+	checker = {
+		enabled = true,
+		notify = false,
+	},
+	change_detection = {
+		notify = false,
+	},
+})
 

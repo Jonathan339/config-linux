@@ -31,6 +31,7 @@ read_globals = {
 }
 
 globals = {
+  "vim"
   "vim.g",
   "vim.b",
   "vim.w",
