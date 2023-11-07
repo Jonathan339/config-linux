@@ -23,31 +23,7 @@ require("lazy").setup({{ import = "plugins" },
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
 		colorscheme = { 'onedark' },
-	  },
-	  rtp = {
-		reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-		---@type string[]
-		paths = {}, -- add any custom paths here that you want to incluce in the rtp
-		---@type string[] list any plugins you want to disable here
-		disabled_plugins = {
-		  "matchit",
-		  "netrw",
-		  "netrwPlugin",
-		  "netrwSettings",
-		  "netrwFileHandlers",
-		  "gzip",
-		  "zip",
-		  "zipPlugin",
-		  "tar",
-		  "tarPlugin",
-		  "getscript",
-		  "getscriptPlugin",
-		  "vimball",
-		  "vimballPlugin",
-		  "2html_plugin",
-		  "logipat",
-		  "rrhelper",
-		  "matchparen"
-		},
+	  }
+	
   })
 
