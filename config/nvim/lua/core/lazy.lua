@@ -58,9 +58,9 @@ require("lazy").setup({
       reset = true,
       disabled_plugins = {
         "matchit",
-        "netrw",
-        "netrwPlugin",
-        "netrwSettings",
+      --  "netrw",
+      -- "netrwPlugin",
+      --  "netrwSettings",
         "netrwFileHandlers",
         "gzip",
         "zip",
