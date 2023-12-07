@@ -1,5 +1,4 @@
 local M = {}
-
 -- Verificar si el cliente LSP admite el método "textDocument/formatting"
 M.on_attach = function(client, bufnr, lsp)
 	if client.supports_method("textDocument/formatting") then
