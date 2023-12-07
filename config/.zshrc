@@ -1,8 +1,3 @@
-export PATH="/home/x/.local/share/fnm:$PATH"
-eval "`fnm env`"
-eval "$(starship init zsh)"
-eval "$(fnm env --use-on-cd)"
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
