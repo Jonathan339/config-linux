@@ -40,13 +40,16 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 })
 
 -- Add asterisks in block comments
-vim.opt.formatoptions:append({ "r" })
+-- vim.opt.formatoptions:append({ "r" })
 -- Resaltar el texto copiado
-vim.cmd([[
-  augroup highlight_yank
-  autocmd!
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
-  augroup END
-]])
+-- vim.cmd([[
+--  augroup highlight_yank
+--  autocmd!
+--  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+--  augroup END
+--]])
 
-vim.opt.winbar = "%=%m %f"
+-- vim.opt.winbar = "%=%m %f"
+-- vim.opt.winbar = "%%f"
+-- vim.opt.winbar = "%<%f %m"
+

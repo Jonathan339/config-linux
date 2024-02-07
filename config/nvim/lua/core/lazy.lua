@@ -1,3 +1,6 @@
+require('autocommands')
+
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -11,7 +14,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 -- Add lazy.nvim to the runtime path.
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-
 -- Require lazy.nvim and call the setup() function.
 require("lazy").setup({
 	-- Import the plugins and plugin groups from the plugins directory.
@@ -21,7 +23,6 @@ require("lazy").setup({
 		{ import = "plugins.lsp" },
 		{ import = "plugins.editor" },
 		{ import = "plugins.ui" },
-
 	},
 
 	-- Install missing plugins on startup.
