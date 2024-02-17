@@ -1,5 +1,4 @@
 local icons = {}
-
 local data = {
 	kind = {
 		Class = "󰠱",
