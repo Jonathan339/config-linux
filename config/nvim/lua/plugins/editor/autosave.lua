@@ -1,5 +1,6 @@
 local M = {
 	"okuuva/auto-save.nvim",
+	event = "VeryLazy",
 	lazy = true,
 	cmd = "ASToggle", -- optional for lazy loading on command
 	event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events

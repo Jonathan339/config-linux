@@ -1,55 +1,68 @@
-vim.cmd("autocmd!")
+-- Definir los líderes de los mapas de teclas
 
-vim.scriptencoding = "utf-8"
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
-vim.opt.background = "dark"
-vim.wo.number = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.title = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.hlsearch = true
-vim.opt.backup = false
-vim.opt.showcmd = true
-vim.opt.cmdheight = 1
-vim.opt.laststatus = 2
-vim.opt.expandtab = true
-vim.opt.scrolloff = 10
-vim.opt.shell = "fish"
-vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
-vim.opt.inccommand = "split"
-vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
-vim.opt.smarttab = true
-vim.opt.breakindent = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.wrap = false -- No Wrap lines
-vim.opt.backspace = { "start", "eol", "indent" }
-vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-vim.opt.wildignore:append({ "*/node_modules/*" })
-vim.cmd("set nofoldenable")
+local opt = vim.opt
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
+vim.g.snippets = pcall(require, "luasnip")
+-- [[Auto completado]]
+
+opt.completeopt = "menu,menuone,noselect"
+opt.shortmess = opt.shortmess + { c = true }
+opt.wildmode = "longest:full,full"
+-- [[Configuración de la interfaz de usuario]]
+
+opt.conceallevel = 2
+opt.cursorline = true
+opt.list = false
+opt.mouse = "a"
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = "yes"
+opt.termguicolors = true
+opt.wrap = false
+-- perfomance
+
+opt.redrawtime = 1500
+opt.timeoutlen = 200
+opt.ttimeoutlen = 10
+opt.updatetime = 100
+-- [[Configuración del texto]]
+
+opt.backspace = { "eol", "start", "indent" }
+opt.clipboard = "unnamedplus"
+opt.encoding = "utf-8"
+opt.expandtab = true
+opt.ignorecase = true
+opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
+opt.modifiable = true -- Permite modificar el contenido del buffer
+opt.shiftround = true
+opt.shiftwidth = 2
+opt.smartcase = true
+opt.smartindent = true
+opt.syntax = "enable"
+opt.tabstop = 2
+opt.virtualedit = "block"
+opt.wildignore:append({ "*/node_modules/*" })
+-- [[Guardado y deshacer]]
+
+opt.autoread = true
+opt.autowrite = true
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200
+-- [[Vista previa y navegación]]
+
+opt.inccommand = "nosplit"
+opt.laststatus = 3
+opt.pumblend = 10
+opt.pumheight = 10
+opt.scrolloff = 4
+opt.sidescrolloff = 8
+opt.splitbelow = true
+opt.splitkeep = "screen"
+opt.splitright = true
+opt.winminwidth = 5
+vim.opt.foldenable = false
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
-
--- Turn off paste mode when leaving insert
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "set nopaste",
-})
-
--- Add asterisks in block comments
--- vim.opt.formatoptions:append({ "r" })
--- Resaltar el texto copiado
--- vim.cmd([[
---  augroup highlight_yank
---  autocmd!
---  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
---  augroup END
---]])
-
--- vim.opt.winbar = "%=%m %f"
--- vim.opt.winbar = "%%f"
--- vim.opt.winbar = "%<%f %m"
-

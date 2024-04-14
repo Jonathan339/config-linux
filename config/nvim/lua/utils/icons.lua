@@ -1,4 +1,5 @@
 local icons = {}
+
 local data = {
 	kind = {
 		Class = "󰠱",
@@ -78,16 +79,18 @@ local data = {
 		BigCircle = "",
 		BigUnfilledCircle = "",
 		BookMark = "󰃃",
+		Buffer = "󰓩",
 		Bug = "",
 		Calendar = "",
+		Character = "",
 		Check = "󰄳",
 		ChevronRight = "",
 		Circle = "",
 		Close = "󰅖",
 		Close_alt = "",
 		CloudDownload = "",
-		Comment = "󰅺",
 		CodeAction = "󰌵",
+		Comment = "󰅺",
 		Dashboard = "",
 		Emoji = "󰱫",
 		EmptyFolder = "",
@@ -132,6 +135,7 @@ local data = {
 		Table = "",
 		Telescope = "",
 	},
+
 	diagnostics = {
 		Error = "",
 		Warning = "",
@@ -163,6 +167,7 @@ local data = {
 		Added = "",
 		Ghost = "󰊠",
 		ManUp = "",
+		Neovim = "",
 		Vim = "",
 	},
 	cmp = {

@@ -1,5 +1,3 @@
-require("autocommands")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -23,57 +21,24 @@ require("lazy").setup({
 		{ import = "plugins.editor" },
 		{ import = "plugins.ui" },
 	},
-
-	-- Install missing plugins on startup.
-	install = {
-		missing = true,
-		colorscheme = { "onedark" },
+	default = {
+		lazy = true,
 	},
-
-	-- Check for plugin updates automatically.
-	checker = {
-		enabled = false,
-		concurrency = 1,
-		notify = true,
-		frequency = 3600,
-	},
-
-	-- Enable change detection for plugins.
-	change_detection = {
-		enabled = true,
-		notify = true,
-	},
-
-	-- Enable performance optimizations.
+	checker = { enabled = true, notify = false },
 	performance = {
 		cache = {
 			enabled = true,
-			path = vim.fn.stdpath("cache") .. "/lazy/cache",
-			disable_events = { "VimEnter", "BufReadPre" },
-			ttl = 3600 * 24,
+			-- disable_events = {},
 		},
-		reset_packpath = true,
 		rtp = {
-			reset = true,
 			disabled_plugins = {
-				"matchit",
-				--  "netrw",
-				-- "netrwPlugin",
-				--  "netrwSettings",
-				"netrwFileHandlers",
 				"gzip",
-				"zip",
-				"zipPlugin",
-				"tar",
-				"tarPlugin",
-				"getscript",
-				"getscriptPlugin",
-				"vimball",
-				"vimballPlugin",
-				-- "2html_plugin",
-				"logipat",
-				"rrhelper",
+				"matchit",
 				"matchparen",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
 			},
 		},
 	},
