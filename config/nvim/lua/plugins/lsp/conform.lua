@@ -24,9 +24,9 @@ return {
     },
     -- Set up format-on-save
     format_on_save = {
-      timeout_ms = 2500,
-      async = false,       -- not recommended to change
-      quiet = false,       -- not recommended to change
+      timeout_ms = 3000,
+      async = true,       -- not recommended to change
+      quiet = true,       -- not recommended to change
       lsp_fallback = true, -- not recommended to change
     },
     -- Customize formatters
