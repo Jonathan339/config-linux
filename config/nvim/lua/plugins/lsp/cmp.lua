@@ -11,6 +11,6 @@ return {
   },
   event = 'InsertEnter',
   config = function()
-    require('configs.completion.cmp')
+    require('lsp.completion.cmp')
   end,
 }
