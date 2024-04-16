@@ -96,4 +96,5 @@ autocmd({ 'BufWritePre' }, {
   end,
 })
 
+vim.api.nvim_command('autocmd VimResized * wincmd =')
 
