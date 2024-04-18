@@ -1,68 +1,38 @@
--- Definir los líderes de los mapas de teclas
+vim.g.mapleader = ','
 
-local opt = vim.opt
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
-vim.g.snippets = pcall(require, "luasnip")
--- [[Auto completado]]
+vim.scriptencoding = 'utf-8'
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencoding = 'utf-8'
 
-opt.completeopt = "menu,menuone,noselect"
-opt.shortmess = opt.shortmess + { c = true }
-opt.wildmode = "longest:full,full"
--- [[Configuración de la interfaz de usuario]]
+vim.opt.number = true
+vim.opt.title = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.hlsearch = true
+vim.opt.backup = false
+vim.opt.showcmd = true
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 0
+vim.opt.expandtab = true
+vim.opt.scrolloff = 10
+vim.opt.inccommand = 'split'
+vim.opt.ignorecase = true
+vim.opt.smarttab = true
+vim.opt.breakindent = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.wrap = false
+vim.opt.backspace = { 'start', 'eol', 'indent' }
+vim.opt.path:append({ '**' })
+vim.opt.wildignore:append({ '*/node_modules/*' })
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitkeep = 'cursor'
+vim.opt.mouse = ''
 
-opt.conceallevel = 2
-opt.cursorline = true
-opt.list = false
-opt.mouse = "a"
-opt.number = true
-opt.relativenumber = true
-opt.signcolumn = "yes"
-opt.termguicolors = true
-opt.wrap = false
--- perfomance
+-- Add asterisks in block comments
+vim.opt.formatoptions:append({ 'r' })
 
-opt.redrawtime = 1500
-opt.timeoutlen = 200
-opt.ttimeoutlen = 10
-opt.updatetime = 100
--- [[Configuración del texto]]
-
-opt.backspace = { "eol", "start", "indent" }
-opt.clipboard = "unnamedplus"
-opt.encoding = "utf-8"
-opt.expandtab = true
-opt.ignorecase = true
-opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
-opt.modifiable = true -- Permite modificar el contenido del buffer
-opt.shiftround = true
-opt.shiftwidth = 2
-opt.smartcase = true
-opt.smartindent = true
-opt.syntax = "enable"
-opt.tabstop = 2
-opt.virtualedit = "block"
-opt.wildignore:append({ "*/node_modules/*" })
--- [[Guardado y deshacer]]
-
-opt.autoread = true
-opt.autowrite = true
-opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200
--- [[Vista previa y navegación]]
-
-opt.inccommand = "nosplit"
-opt.laststatus = 3
-opt.pumblend = 10
-opt.pumheight = 10
-opt.scrolloff = 4
-opt.sidescrolloff = 8
-opt.splitbelow = true
-opt.splitkeep = "screen"
-opt.splitright = true
-opt.winminwidth = 5
-vim.opt.foldenable = false
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])

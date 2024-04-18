@@ -17,6 +17,3 @@ end
 
 return M
 
--- local color = {}
-
--- return color

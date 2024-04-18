@@ -2,6 +2,28 @@ local agroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local usercmd = vim.api.nvim_create_user_command
 
+-- This file is automatically loaded by lazyvim.config.init.
+
+local function augroup(name)
+  return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
+end
+
+-- Check if we need to reload the file when it changed
+autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup('checktime'),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
+  end,
+})
+
+agroup('__formatter__', { clear = true })
+autocmd('BufWritePost', {
+  group = '__formatter__',
+  command = ':FormatWrite',
+})
+
 local function augroup(name)
   return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
 end
@@ -96,5 +118,40 @@ autocmd({ 'BufWritePre' }, {
   end,
 })
 
-vim.api.nvim_command('autocmd VimResized * wincmd =')
+-- close some filetypes with <q>
+autocmd('FileType', {
+  group = augroup('close_with_q'),
+  pattern = {
+    'PlenaryTestPopup',
+    'help',
+    'lspinfo',
+    'notify',
+    'qf',
+    'query',
+    'spectre_panel',
+    'startuptime',
+    'tsplayground',
+    'neotest-output',
+    'checkhealth',
+    'neotest-summary',
+    'neotest-output-panel',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
+  end,
+})
 
+autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+autocmd('InsertLeave', {
+  callback = function()
+    if require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()] and not require('luasnip').session.jump_active then
+      require('luasnip').unlink_current()
+    end
+  end,
+})

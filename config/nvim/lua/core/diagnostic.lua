@@ -23,3 +23,4 @@ vim.diagnostic.config({
     prefix = "",
   },
 })
+

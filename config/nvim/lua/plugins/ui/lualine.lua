@@ -28,7 +28,7 @@ local conditions = {
 
 -- Config
 local config = {
-    theme = "onedark",
+    theme = "auto",
     options = {
         -- Disable sections and component separators
         component_separators = "",
@@ -180,5 +180,6 @@ ins_right({
 return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function() require("lualine").setup(config) end
 }

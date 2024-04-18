@@ -1,21 +1,21 @@
 local map = require('utils').map
-
 -- Salir del modo insertar
 map('i', ',,', '<ESC>', { desc = 'Salir del modo insertar' })
 
 -- Guardar el archivo actual
 map('n', '<Leader>w', ':w!<CR>', { desc = 'Guardar el archivo actual' })
 
+-- Salir del editor
 map('n', '<Leader>e', ':Ex<CR>', { desc = 'Salir del editor' })
+
 -- Navigate buffers
--- map('n', '<C-Right>', ':bnext<CR>', { desc = 'Saltar al siguiente buffer' })
--- map('n', '<C-Left>', ':bprevious<CR>', { desc = 'Saltar al buffer anterior' })
 map('n', '<A-Right>', ':bnext<CR>', { desc = 'Saltar al siguiente buffer' })
 map('n', '<A-Left>', ':bprevious<CR>', { desc = 'Saltar al buffer anterior' })
+
 -- Select all
---
 map('n', '<C-a>', 'ggVG', { desc = 'Seleccionar todo' })
 
+-- Buscar en el buffer actual
 map('n', '<C-s>', ':Telescope current_buffer_fuzzy_find<CR>', { desc = 'Buscar en el buffer actual' })
 
 -- Salir del editor
