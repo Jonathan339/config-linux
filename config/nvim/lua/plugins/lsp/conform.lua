@@ -1,7 +1,7 @@
 return {
     'stevearc/conform.nvim',
    -- event = { 'BufWritePre' },
-
+    cmd = { 'ConformInfo' },
     keys = {
       {
         -- Customize or remove this keymap to your liking
@@ -17,10 +17,11 @@ return {
     opts = {
       -- Define your formatters
       formatters_by_ft = {
-        lua = { 'stylua' },
-        python = { 'isort', 'black' },
-        javascript = { 'standardjs' },
-        sh = { 'shfmt' },
+        lua = { "stylua" },
+        -- Conform will run multiple formatters sequentially
+        python = { "isort", "black" },
+        -- Use a sub-list to run only the first available formatter
+        javascript = { { "prettierd", "prettier" } },
       },
       -- Set up format-on-save
       format_on_save = {

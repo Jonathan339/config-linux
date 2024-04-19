@@ -61,6 +61,7 @@ return {
 					"lua_ls",
 					"markdownlint",
 					"pyright",
+					"prettier",
 					"rust_analyzer",
 					"selene",
 					"shellcheck",

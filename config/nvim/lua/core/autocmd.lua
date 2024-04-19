@@ -142,12 +142,13 @@ autocmd('FileType', {
   end,
 })
 
-autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf })
-  end,
-})
+-- autocmd('BufWritePre', {
+--   pattern = '*',
+--   callback = function(args)
+--     require('conform').format({ bufnr = args.buf })
+--   end,
+-- })
+
 autocmd('InsertLeave', {
   callback = function()
     if require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()] and not require('luasnip').session.jump_active then
