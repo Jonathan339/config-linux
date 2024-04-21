@@ -72,7 +72,7 @@ function androidemulator() {
 
 # Alias
 alias code='which code | code .'
-alias expo='bunx create expo-app'
+alias expo='bunx create-expo'
 alias start='yarn start'
 alias android='yarn android && code .'
 alias update='sudo apt update && sudo apt upgrade -y'
