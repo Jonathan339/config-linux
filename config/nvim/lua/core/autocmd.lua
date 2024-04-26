@@ -24,9 +24,9 @@ autocmd('BufWritePost', {
   command = ':FormatWrite',
 })
 
-local function augroup(name)
-  return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
-end
+-- local function augroup(name)
+--   return vim.api.nvim_create_augroup('lazyvim_' .. name, { clear = true })
+-- end
 -- Turn off paste mode when leaving insert
 -- https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim
 autocmd('TextChanged', {
@@ -49,6 +49,7 @@ autocmd('TextChanged', {
     vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link = 'CmpItemKindKeyword' })
   end,
 })
+
 -- Check if we need to reload the file when it changed
 autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
   group = augroup('checktime'),
@@ -58,6 +59,7 @@ autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
     end
   end,
 })
+
 autocmd('BufWritePre', {
   callback = function()
     vim.cmd([[%s/\s\+$//e]])

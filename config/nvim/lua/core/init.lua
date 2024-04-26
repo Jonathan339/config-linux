@@ -1,9 +1,7 @@
-require("core.options")
--- autocmds and keymaps can wait to load
-require("core.autocmd")
-
-require("core.lazy")
-require("core.diagnostic")
+require('core.options')
+require('core.autocmd')
+require('core.lazy')
 vim.schedule(function()
-    require("core.map")
-  end)
+  require('core.diagnostic')
+  require('core.map')
+end)

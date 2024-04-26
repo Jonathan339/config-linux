@@ -17,17 +17,17 @@ return {
   opts = {
     -- Define your formatters
     formatters_by_ft = {
-      lua = { "stylua" },
+      lua = { 'stylua' },
       -- Conform will run multiple formatters sequentially
-      python = { "isort", "black" },
+      python = { 'isort', 'black' },
       -- Use a sub-list to run only the first available formatter
-      javascript = { { "standardjs" } },
+      javascript = { { 'standardjs' } },
     },
     -- Set up format-on-save
     format_on_save = {
       timeout_ms = 4000,
-      async = true,        -- not recommended to change
-      quiet = false,       -- not recommended to change
+      async = true, -- not recommended to change
+      quiet = false, -- not recommended to change
       lsp_fallback = true, -- not recommended to change
     },
     -- Customize formatters
