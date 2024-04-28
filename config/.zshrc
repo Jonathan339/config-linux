@@ -1,8 +1,3 @@
-export PATH="/home/x/.local/share/fnm:$PATH"
-eval "`fnm env`"
-eval "$(starship init zsh)"
-eval "$(fnm env --use-on-cd)"
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -88,7 +83,7 @@ alias tree='tree -I "node_modules" -L 4'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias rm='rm -i'
+alias rm='rm -rf'
 alias cp='cp -i'
 alias mv='mv -i'
 alias gs='git status'
