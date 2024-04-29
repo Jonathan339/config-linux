@@ -2,6 +2,9 @@ local map = require('utils').map
 -- Salir del modo insertar
 map('i', ',,', '<ESC>', { desc = 'Salir del modo insertar' })
 
+--- A one-line summarydd---
+map('n', '<Leader>n', ':Neotree float<CR>', { desc = 'Neotree' })
+
 -- Guardar el archivo actual
 map('n', '<Leader>w', ':w!<CR>', { desc = 'Guardar el archivo actual' })
 

@@ -9,6 +9,12 @@ return {
     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
   },
   config = function()
-    require('neo-tree').setup({})
+    require('neo-tree').setup({
+      popup_border_style = 'rounded',
+      file_size = {
+        enabled = true,
+        required_width = 64, -- min width of window required to show this column
+      },
+    })
   end,
 }
