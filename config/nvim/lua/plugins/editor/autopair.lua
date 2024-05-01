@@ -1,14 +1,15 @@
 local M = {
   'windwp/nvim-autopairs',
   event = 'InsertEnter',
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  opts = {
-    check_ts = true, -- enable treesitter
-    -- map_c_h = true, -- map <C-h> key to delete a pair
-    -- map_c_w = true, -- map <C-w> to delete a pair
-  },
+  dependencies = { 'hrsh7th/nvim-cmp', 'nvim-treesitter/nvim-treesitter' },
 }
-M.config = function(_, opts)
-  require('nvim-autopairs').setup(opts)
+
+M.config = function()
+  require('nvim-autopairs').setup({})
+  -- If you want to automatically add `(` after selecting a function or method
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+  local cmp = require('cmp')
+  cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 end
+
 return M
