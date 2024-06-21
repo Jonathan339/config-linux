@@ -13,22 +13,22 @@ M.config = function()
   vim.tbl_map(function(type)
     require('luasnip.loaders.from_' .. type).lazy_load()
   end, { 'vscode', 'snipmate', 'lua' })
-
+  local ls_lua_loader = require('luasnip.loaders.from_lua')
+  local ls = require('luasnip')
   -- friendly-snippets - enable standardized comments snippets
-  require('luasnip').filetype_extend('typescript', { 'tsdoc' })
-  require('luasnip').filetype_extend('javascript', { 'jsdoc' })
-  require('luasnip').filetype_extend('lua', { 'luadoc' })
-  require('luasnip').filetype_extend('python', { 'pydoc' })
-  require('luasnip').filetype_extend('rust', { 'rustdoc' })
-  require('luasnip').filetype_extend('cs', { 'csharpdoc' })
-  require('luasnip').filetype_extend('java', { 'javadoc' })
-  require('luasnip').filetype_extend('c', { 'cdoc' })
-  require('luasnip').filetype_extend('cpp', { 'cppdoc' })
-  require('luasnip').filetype_extend('php', { 'phpdoc' })
-  require('luasnip').filetype_extend('kotlin', { 'kdoc' })
-  require('luasnip').filetype_extend('ruby', { 'rdoc' })
-  require('luasnip').filetype_extend('sh', { 'shelldoc' })
-
+  ls.filetype_extend('typescript', { 'tsdoc' })
+  ls.filetype_extend('javascript', { 'jsdoc' })
+  ls.filetype_extend('lua', { 'luadoc' })
+  ls.filetype_extend('python', { 'pydoc' })
+  ls.filetype_extend('rust', { 'rustdoc' })
+  ls.filetype_extend('cs', { 'csharpdoc' })
+  ls.filetype_extend('java', { 'javadoc' })
+  ls.filetype_extend('c', { 'cdoc' })
+  ls.filetype_extend('cpp', { 'cppdoc' })
+  ls.filetype_extend('php', { 'phpdoc' })
+  ls.filetype_extend('kotlin', { 'kdoc' })
+  ls.filetype_extend('ruby', { 'rdoc' })
+  ls.filetype_extend('sh', { 'shelldoc' })
   -- vscode format
   require('luasnip.loaders.from_vscode').lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
   require('luasnip.loaders.from_vscode').lazy_load({ paths = 'your path!' })
@@ -39,8 +39,8 @@ M.config = function()
   require('luasnip.loaders.from_snipmate').lazy_load({ paths = vim.g.snipmate_snippets_path or '' })
 
   -- lua format
-  require('luasnip.loaders.from_lua').load()
-  require('luasnip.loaders.from_lua').lazy_load({ paths = vim.g.lua_snippets_path or '' })
+  ls_lua_loader.load()
+  ls_lua_loader.lazy_load({ paths = vim.g.lua_snippets_path or '' })
 
   vim.api.nvim_create_autocmd('InsertLeave', {
     callback = function()
@@ -49,5 +49,23 @@ M.config = function()
       end
     end,
   })
+
+  --- TODO: What is expand?
+  vim.keymap.set({ 'i' }, '<C-s>e', function()
+    ls.expand()
+  end, { silent = true })
+
+  vim.keymap.set({ 'i', 's' }, '<C-s>;', function()
+    ls.jump(1)
+  end, { silent = true })
+  vim.keymap.set({ 'i', 's' }, '<C-s>,', function()
+    ls.jump(-1)
+  end, { silent = true })
+
+  vim.keymap.set({ 'i', 's' }, '<C-E>', function()
+    if ls.choice_active() then
+      ls.change_choice(1)
+    end
+  end, { silent = true })
 end
 return M
