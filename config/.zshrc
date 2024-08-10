@@ -47,7 +47,7 @@ DISABLE_FZF_AUTO_COMPLETION="false"
 # Los plugins personalizados pueden ser agregados a $ZSH_CUSTOM/plugins/
 # Formato de ejemplo: plugins=(rails git textmate ruby lighthouse)
 # Agrega sabiamente, ya que muchos plugins hacen más lento el inicio del shell.
-plugins=(git virtualenvwrapper tmux zsh-interactive-cd sublime-merge themes fzf command-not-found autopep8)
+plugins=(git virtualenvwrapper tmux zsh-interactive-cd zsh-autosuggestions themes fzf command-not-found autopep8)
 
 # Incluir Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
@@ -57,36 +57,10 @@ source $ZSH/oh-my-zsh.sh
 # Habilitar autocompletado de fzf
 autoload -U compinit && compinit
 
-
-# Define una función para obtener el nombre del AVD de la lista de AVDs disponibles
-function get_android_avd() {
-  emulator -list-avds
-}
-
-# Define una función para lanzar el emulador de Android con el AVD seleccionado
-function androidemulator() {
-  local emulator_avd
-  emulator_avd=$(get_android_avd)
-  emulator -avd "$emulator_avd">/dev/null 2>&1
-}
-
-# Alias
-alias code='which code | code .'
-alias expo="bunx create-expo-app@latest"
-alias android='yarn android && code .'
-alias update='sudo apt update && sudo apt upgrade -y'
-alias run-react='yarn react-native run-android && yarn react-native start'
-alias ls='ls -G'
-alias ll='ls -alG'
-alias path='echo $PATH | tr ":" "\n" | nl'
-alias tree='tree -I "node_modules" -L 4'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias rm='rm -rf'
-alias cp='cp -i'
-alias mv='mv -i'
-alias gs='git status'
-alias gp='git pull'
-alias gpp='git push'
-alias gc='git commit -am'
+# Obtener el directorio actual
+SCRIPT_DIR=$(pwd)
+# Importar el archivo git_helpers.sh
+if [ -f ~/.zsh_aliases ]; then
+  source "$SCRIPT_DIR/.zsh_aliases"
+ 
+fi
