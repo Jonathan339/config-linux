@@ -142,6 +142,7 @@ local data = {
     Information = '',
     Question = '',
     Hint = '󰌵',
+    Debug = ' ',
     -- Holo version
     Error_alt = '󰅚',
     Warning_alt = '󰀪',
