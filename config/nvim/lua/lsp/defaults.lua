@@ -32,7 +32,8 @@ local function async_formatting(bufnr)
   end)
 end
 -- Función on_attach que se ejecuta cuando el servidor LSP se adjunta a un buffer
-function M.on_attach(client, bufnr)
+-- function M.on_attach(client, bufnr)
+M.on_attach = function(client, bufnr)
   -- Configurar omnicompletado
   buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
