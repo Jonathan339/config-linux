@@ -1,9 +1,8 @@
 local u = require('utils')
-local user_config = require('core.user')
+local user_config = require('config.user')
 local icons = require('utils.icons').get('diagnostics')
 local config = {}
 
----@type lsp.Diagnostic
 local default_diagnostic_config = {
   underline = true,
   update_in_insert = true,

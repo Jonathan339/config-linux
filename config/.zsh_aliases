@@ -15,6 +15,8 @@ function androidemulator() {
 alias ll='ls -alF'
 alias la='ls -A'
 alias ls='ls -CF'
+alias c='clear'
+alias lp='yarn add -D prettier eslint eslint-config-prettier eslint-plugin-prettier --exact'
 alias code='which code | code .'
 alias expo="npx create-expo-app@latest --template blank"
 alias android='yarn android && code .'

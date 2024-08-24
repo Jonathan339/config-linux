@@ -1,6 +1,13 @@
 local M = {}
 local u = require('utils')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+
+if not cmp_nvim_lsp_ok then
+  vim.notify('Error cargando cmp_nvim_lsp. Asegúrate de que el plugin esté instalado.', vim.log.levels.ERROR)
+  return M
+end
+
+local capabilities = cmp_nvim_lsp.default_capabilities()
 local augroup_name = 'LspDefault'
 local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
 local user_config = {}
@@ -31,8 +38,8 @@ local function async_formatting(bufnr)
     end
   end)
 end
+
 -- Función on_attach que se ejecuta cuando el servidor LSP se adjunta a un buffer
--- function M.on_attach(client, bufnr)
 M.on_attach = function(client, bufnr)
   -- Configurar omnicompletado
   buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
