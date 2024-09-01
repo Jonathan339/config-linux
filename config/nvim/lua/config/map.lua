@@ -16,6 +16,8 @@ map('n', '<Leader>e', ':Ex<CR>', { desc = 'Salir del editor' })
 map('n', '<A-Right>', ':bnext<CR>', { desc = 'Saltar al siguiente buffer' })
 map('n', '<A-Left>', ':bprevious<CR>', { desc = 'Saltar al buffer anterior' })
 
+-- terminal
+map('n', '<Leader>t', ':ToggleTerm<CR>', { desc = 'Terminal' })
 -- Seleccionar todo
 map('n', '<C-a>', 'ggVG', { desc = 'Seleccionar todo' })
 
