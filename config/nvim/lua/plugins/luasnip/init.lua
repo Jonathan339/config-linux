@@ -12,6 +12,22 @@ local M = {
 }
 
 M.config = function(_, opts)
+  -- luasnip.lua
+
+  -- Función para cargar los snippets
+  local function cargar_snippets()
+    for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/plugins/luasnip/snippets/*.lua', true)) do
+      local status, err = pcall(function()
+        loadfile(ft_path)()
+      end)
+      if not status then
+        print('Error al cargar el archivo de snippet:', err)
+      end
+    end
+  end
+
+  -- Programa la carga de snippets para que se ejecute de forma asíncrona
+  vim.schedule(cargar_snippets)
   -- vscode format
   require('luasnip.loaders.from_vscode').lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
   require('luasnip.loaders.from_vscode').lazy_load({ paths = vim.g.vscode_snippets_path or '' })
