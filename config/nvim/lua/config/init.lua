@@ -14,7 +14,7 @@ local function load_modules(modules)
 end
 
 -- Módulos principales
-local main_modules = { 'config.lazy', 'config.map', 'config.options' }
+local main_modules = { 'config.options', 'config.lazy', 'config.map' }
 load_modules(main_modules)
 
 -- Módulos secundarios cargados de manera asíncrona
