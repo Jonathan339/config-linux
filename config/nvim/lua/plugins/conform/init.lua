@@ -28,8 +28,6 @@ return {
       toml = { 'prettier' },
       vue = { 'prettier' },
       yaml = { 'prettier' },
-      -- prettier + rustywind
-      html = { 'prettier', 'rustywind' },
       javascript = { 'prettier', 'rustywind' },
       javascriptreact = { 'prettier', 'rustywind' },
       typescript = { 'prettier', 'rustywind' },

@@ -1,5 +1,5 @@
 -- er.lua lua/config- DEFAULT USER SETTINGS
-local ok, user_config = pcall(require, '')
+local ok, user_config = pcall(require, 'config.config')
 
 if not ok then
   user_config = {}
@@ -17,6 +17,7 @@ local default_config = {
       enable_on_start = false,
     },
   },
+
   lsp = {
     inlay_hint = true,
     format_on_save = true, -- true/false or table of filetypes {'.ts', '.js',}
@@ -28,7 +29,7 @@ local default_config = {
     -- lsp servers that should be installed
     ensure_installed = {
       -- 'codespell',
-
+      'vtsls',
       -- 'djlint',
       'efm',
       -- 'elm_format',
@@ -56,9 +57,9 @@ local default_config = {
       'sqlls',
       'standardjs',
       'stylua',
-      -- 'tailwindcss',
-      'tailwindcss-language-server',
-      'tsserver',
+      'tailwindcss',
+      -- 'tailwindcss-language-server',
+      -- 'tsserver',
       'typescript-language-server',
       'vimls',
       'yamlls',

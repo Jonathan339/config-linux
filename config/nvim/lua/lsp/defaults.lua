@@ -16,7 +16,6 @@ if not cmp_nvim_lsp_ok then
 end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
-local augroup_name = 'LspDefault'
 local augroup_format = vim.api.nvim_create_augroup('LspFormatting', {})
 
 local user_config = {

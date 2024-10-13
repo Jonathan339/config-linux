@@ -11,7 +11,7 @@ return {
     },
     config = function()
       local lsp_zero = require('lsp-zero')
-      --local opt = require("configs.lsp.default")
+      -- local opt = require("configs.lsp.default")
       local lspconfig = require('lspconfig')
       lsp_zero.on_attach(function(_, bufnr)
         -- see :help lsp-zero-keybindings
@@ -45,6 +45,17 @@ return {
           omnisharp = function()
             lspconfig.omnisharp.setup({
               handlers = { ['textDocument/definition'] = require('omnisharp_extended').handler },
+            })
+          end,
+          eslint = function()
+            lspconfig.eslint.setup({
+              -- handlers = { ['textDocument/definition'] = require('es').handler },
+              on_attach = function(client, bufnr)
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                  buffer = bufnr,
+                  command = 'EslintFixAll',
+                })
+              end,
             })
           end,
         },
