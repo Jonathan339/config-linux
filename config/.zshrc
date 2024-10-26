@@ -97,5 +97,9 @@ alias gp='git pull'
 alias gpp='git push'
 alias gc='git commit -am'
 
+
+export PATH="$HOME/.local/share/pnpm:$PATH"
+
+
 # Cargar entorno de Deno si existe
 [ -f "$HOME/.deno/env" ] && . "$HOME/.deno/env"

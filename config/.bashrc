@@ -121,3 +121,11 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 . "/home/x/.deno/env"
+# pnpm
+export PNPM_HOME="/home/x/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+echo eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
