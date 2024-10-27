@@ -9,7 +9,7 @@ map('n', '<Leader>n', ':Neotree float<CR>', { desc = 'Neotree' })
 -- Guardar el archivo actual
 map('n', '<Leader>w', ':w!<CR>', { desc = 'Guardar el archivo actual' })
 
--- Salir del editor
+-- Netrw
 map('n', '<Leader>e', ':Ex<CR>', { desc = 'Salir del editor' })
 
 -- Navegar buffers
@@ -25,7 +25,7 @@ map('n', '<C-a>', 'ggVG', { desc = 'Seleccionar todo' })
 map('n', '<C-s>', ':Telescope current_buffer_fuzzy_find<CR>', { desc = 'Buscar en el buffer actual' })
 
 -- Salir del editor
-map('n', '<Leader>q', ':q!<CR>', { desc = 'Salir del editor' })
+map('n', '<Leader>q', ':x!<CR>', { desc = 'Salir del editor' })
 
 -- Ejecutar el archivo actual
 map('n', '<Leader>m', ':RunCode<CR>', { desc = 'Ejecutar el archivo actual' })
@@ -34,13 +34,23 @@ map('n', '<Leader>m', ':RunCode<CR>', { desc = 'Ejecutar el archivo actual' })
 map('n', '<Leader>f', ':Telescope find_files<CR>', { desc = 'Buscar archivos con Telescope' })
 
 -- Buscar buffers con Telescope
-map('n', '<Leader>b', ':Telescope buffers<CR>', { desc = 'Buscar buffers con Telescope' })
+map('n', '<Leader>b', function()
+  local builtin = require('telescope.builtin')
+  builtin.buffers()
+end, { desc = 'Buscar buffers con Telescope' })
+
+-- Oil
+
+--map('n', '<Leader>o',"<CMD>Oil<CR>", { desc = "Open parent directory" }))
 
 -- Ayuda con Telescope
-map('n', '<Leader>h', ':Telescope help_tags<CR>', { desc = 'Ayuda con Telescope' })
+map('n', '<Leader>h', function()
+  local builtin = require('telescope.builtin')
+  builtin.help_tags()
+end, { desc = 'Ayuda con Telescope' })
 
 -- Buscar palabras con Telescope
-map('n', '<Leader>l', ':Telescope live_grep<CR>', { desc = 'Buscar palabras con Telescope' })
+map('n', '<Leader>l',  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = 'Buscar palabras con Telescope' })
 
 -- Mover líneas hacia arriba o abajo
 map('n', '<A-Up>', ':m .-2<CR>==', { desc = 'Mover línea hacia arriba' })
