@@ -50,35 +50,17 @@ return {
       preselect = cmp.PreselectMode.Item,
 
       formatting = {
-        fields = { 'abbr', 'kind', 'menu' },
         format = function(entry, vim_item)
-          local lspkind_icons = vim.tbl_deep_extend('force', icons.kind, icons.type, icons.cmp)
-          -- load lspkind icons
-          vim_item.kind = string.format(' %s  %s', lspkind_icons[vim_item.kind] or icons.cmp.undefined, vim_item.kind or '')
+          -- Aplicar nvim-highlight-colors primero
+          local color_item = require('nvim-highlight-colors').format(entry, { kind = vim_item.kind })
 
-          vim_item.menu = setmetatable({
-            cmp_tabnine = '[TN]',
-            copilot = '[CPLT]',
-            buffer = '[BUF]',
-            orgmode = '[ORG]',
-            nvim_lsp = '[LSP]',
-            nvim_lua = '[LUA]',
-            path = '[PATH]',
-            tmux = '[TMUX]',
-            treesitter = '[TS]',
-            latex_symbols = '[LTEX]',
-            luasnip = '[SNIP]',
-            spell = '[SPELL]',
-          }, {
-            __index = function()
-              return '[BTN]' -- builtin/unknown source names
-            end,
-          })[entry.source.name]
+          -- Aplicar lspkind si está disponible
+          vim_item = require('lspkind').cmp_format({})(entry, vim_item)
 
-          local label = vim_item.abbr
-          local truncated_label = vim.fn.strcharpart(label, 0, 80)
-          if truncated_label ~= label then
-            vim_item.abbr = truncated_label .. '...'
+          -- Integración de colores con lspkind
+          if color_item.abbr_hl_group then
+            vim_item.kind_hl_group = color_item.abbr_hl_group
+            vim_item.kind = color_item.abbr
           end
 
           return vim_item
